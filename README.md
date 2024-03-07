@@ -1,4 +1,5 @@
-# Abike16
+# Bikebox Registration
+
 ng generate module lang-keyb --route lang-keyb --module app.module
 ng generate module keyboard --module app.module
 
@@ -30,16 +31,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 # FIREBASE - biker16 users
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC6LXDZz3KTnzxBJMye4CjjgOC28HZcjiM",
-  authDomain: "biker16-a7653.firebaseapp.com",
-  projectId: "biker16-a7653",
-  storageBucket: "biker16-a7653.appspot.com",
-  messagingSenderId: "1008785288285",
-  appId: "1:1008785288285:web:0e13d525f9c5fdd50bf1b4"
+apiKey: "AIzaSyC6LXDZz3KTnzxBJMye4CjjgOC28HZcjiM",
+authDomain: "biker16-a7653.firebaseapp.com",
+projectId: "biker16-a7653",
+storageBucket: "biker16-a7653.appspot.com",
+messagingSenderId: "1008785288285",
+appId: "1:1008785288285:web:0e13d525f9c5fdd50bf1b4"
 };
-
-
 
 # FIREBASE - bikebox202 users
 
@@ -52,13 +52,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCG2ZvGHgPFgf8xehvTmdscMv0k3HF1M9I",
-  authDomain: "bikebox2023.firebaseapp.com",
-  projectId: "bikebox2023",
-  storageBucket: "bikebox2023.appspot.com",
-  messagingSenderId: "128992210775",
-  appId: "1:128992210775:web:6f600ca4cc33cf6bfa5812",
-  measurementId: "G-S10ZFQCE6S"
+apiKey: "AIzaSyCG2ZvGHgPFgf8xehvTmdscMv0k3HF1M9I",
+authDomain: "bikebox2023.firebaseapp.com",
+projectId: "bikebox2023",
+storageBucket: "bikebox2023.appspot.com",
+messagingSenderId: "128992210775",
+appId: "1:128992210775:web:6f600ca4cc33cf6bfa5812",
+measurementId: "G-S10ZFQCE6S"
 };
 
 // Initialize Firebase
