@@ -1,0 +1,39 @@
+{
+  "direction": "ltr",
+  "title": "Данные кредитной карты",
+  "title2": "Bведите данные кредитной карты",
+  "ownerFirstName": {
+    "name": "firstName",
+    "label": "Имя владельца карты*",
+    "placeholder": "Имя владельца"
+  },
+  "ownerLastName": {
+    "name": "lastName",
+    "label": "Фамилия владельца карты*",
+    "placeholder": "Фамилия владельца"
+  },
+
+  "passport": {
+    "name": "passport",
+    "label": "Удостоверение*",
+    "placeholder": "Удостоверение личности"
+  },
+
+  "cardNumber": {
+    "name": "Nomer",
+    "label": "Номер кредитной карты*",
+    "placeholder": "Номер кредитной карты"
+  },
+  "tokef": {
+    "name": "tokef",
+    "label": "действительна до*",
+    "placeholder": "действительна до"
+  },
+
+  "cvv": {
+    "name": "ccv",
+    "label": "Код безопасности*",
+    "placeholder": "3 digits only"
+  },
+  "saveButtonText": "Сохранять"
+}

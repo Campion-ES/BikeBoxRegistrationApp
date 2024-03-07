@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { KeyboardService } from '../keyboard.service';
 import { Subscription } from 'rxjs';
-import { GKeybLanGlobal  as G} from '@app/_globals/keyb-lang.global';
-//import {GKeybLanGlobal as G} from 
+import { GKeybLanGlobal as G } from '@app/_globals/keyb-lang.global';
+//import {GKeybLanGlobal as G} from
 
 //import { GLangNamesArray, RefKeybVisible, RefKeyboardLang, SetAlternateLng, SetGlobalLang, KeybLangPipe$, GlobalLangPipe$ } from 'src/app/keyb-data/keyb.data';
 //import { TLangNames } from 'src/app/interfaces/interfaces';
@@ -12,74 +12,36 @@ import { GKeybLanGlobal  as G} from '@app/_globals/keyb-lang.global';
 @Component({
   selector: 'and-keyboard-multi',
   templateUrl: './keyboard-multi.component.html',
-  styleUrls: ['../keyboard.scss']
+  styleUrls: ['../keyboard.scss'],
 })
-export class KeyboardMultiComponent implements OnInit  , OnDestroy{
-//   LangList:string[] = GLangNamesArray;
+export class KeyboardMultiComponent implements OnInit, OnDestroy {
+  ref = G.ref; //.keybVisible;
 
-
-  ref = G.ref;//.keybVisible;
-//   refLang =   RefKeyboardLang;
-  
- 
-//  private _AlterLang : TAlterLang = '';
-//  public get AlterLang() : TAlterLang {
-//   return this._AlterLang;
-//  }
-//  public set AlterLang(v : TAlterLang) {
-//     if(this._AlterLang != v){
-//       this._AlterLang = v;
-//       SetAlternateLng(v);
-    
-//     }
-//  }
- 
-  //private _Lang1 : TLangNames = 'en';
-  // public get Lang1() : TLangNames {
-
-  //   return this._Lang1;
-  // }
-  // public set Lang1(v : TLangNames) {
-  //   if(this._Lang1 != v){
-  //     this._Lang1 = v;
-  //     SetGlobalLang(v);
-     
-  //   }
-    
-  // }
   @Input()
-  subscrArr:Subscription[] = [];
-  constructor(readonly  kbsrv:KeyboardService){
-    // this.subscrArr.push(GlobalLangPipe$.subscribe(
-    //   lang=>this._Lang1 = lang
-    // ));
-    
-  }
-  Lang: string = G.Lang ;
+  subscrArr: Subscription[] = [];
+  constructor(readonly kbsrv: KeyboardService) {}
+  Lang: string = G.Lang;
 
   ngOnInit(): void {
-   
-    this.subscrArr.push(G.KeybLang$
-      .subscribe(lang=>{
+    this.subscrArr.push(
+      G.KeybLang$.subscribe((lang) => {
         this.Lang = lang;
-        `sent pipe ${this.Lang}`
-      }));
+        `sent pipe ${this.Lang}`;
+      })
+    );
   }
   ngOnDestroy(): void {
-    this.subscrArr.forEach(p=>p?.unsubscribe());
+    this.subscrArr.forEach((p) => p?.unsubscribe());
   }
-  toShowKeyb(){
-  // this.refVisible =  {visible:true};
- // RefKeybVisible.visible =  true;//{visible:true};
+  toShowKeyb() {
+    // this.refVisible =  {visible:true};
+    // RefKeybVisible.visible =  true;//{visible:true};
     G.KeyboardVisible = false;
-    
   }
- 
-  toHideKeyb(){
-   // this.refVisible = {visible:false};
-   G.KeyboardVisible = false;
-   //RefKeybVisible.visible =  false;
-    
+
+  toHideKeyb() {
+    // this.refVisible = {visible:false};
+    G.KeyboardVisible = false;
+    //RefKeybVisible.visible =  false;
   }
- 
 }

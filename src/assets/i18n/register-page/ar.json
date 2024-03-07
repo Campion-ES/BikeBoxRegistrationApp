@@ -1,0 +1,66 @@
+{
+  "direction": "rtl",
+  "title": "التسجيل في نظام وقوف الدراجات الهوائية",
+  "title2": "لاستخدام خدمات موقف السيارات ، يرجى ملء التفاصيل التالية:",
+  "firstName": {
+    "name": "firstName",
+    "label": "اسم شخصي*",
+    "placeholder": "يجب عليك إدخال الاسم الأول"
+  },
+  "lastName": {
+    "name": "lastName",
+    "label": "اسم عائلة*",
+    "placeholder": "يجب أن تملأ الاسم الأخير"
+  },
+  "sysname": {
+    "name": "lastName",
+    "label": "اسم المستخدم",
+    "placeholder": "اسم مستخدم فريد"
+  },
+  "password": {
+    "name": "password",
+    "label": "كلمة المرور",
+    "placeholder": "كلمة المرور"
+  },
+  "passport": {
+    "name": "passport",
+    "label": "رقم الهويه*",
+    "placeholder": "بطاقة الهوية أو رقم جواز السفر"
+  },
+  "email": {
+    "name": "email",
+    "label": "بريد إلكتروني*",
+    "placeholder": "بريد إلكتروني"
+  },
+  "address": {
+    "name": "address",
+    "label": "عنوان السكن",
+    "placeholder": "عنوان السكن"
+  },
+  "phone": {
+    "name": "phone",
+    "label": "رقم الهاتف*",
+    "placeholder": "رقم الهاتف"
+  },
+  "ravkav": {
+    "name": "ravkav",
+    "label": "رقم \"Rav Kav\"",
+    "placeholder": "رقم \"Rav Kav\""
+  },
+  "iamagree": {
+    "name": "iamagree",
+    "label": "أوافق على",
+    "placeholder": ""
+  },
+  "pay": {
+    "terms": {
+      "ref": "/ar/registration/payment/terms",
+      "text": "شروط الاستخدام"
+    },
+    "policy": {
+      "ref": "/ar/registration/payment/policy",
+      "text": "سياسة الخصوصية"
+    }
+  },
+  "continueButton": "يكمل"
+}

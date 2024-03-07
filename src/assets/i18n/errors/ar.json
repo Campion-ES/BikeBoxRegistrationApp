@@ -1,0 +1,11 @@
+{
+  "required": "يجب ملء حقل ",
+  "imagreeTermsRequiredTrue": "يرجى قبول شروط الاستخدام",
+  "imagreePolicyRequiredTrue": "يرجى قبول شروط الاستخدام سياسة الخصوصية",
+  "tokefDateFormat": "يجب أن يكون التاريخ بتنسيق MM / YY",
+  "tokefDateExpired": "انتهت صلاحية بطاقة الائتمان",
+  "teudatZehut": "خطأ في إدخال بطاقة الهوية",
+  "creditCard": "رقم بطاقة الائتمان غير صحيح",
+  "email": "أدخل تنسيق بريد إلكتروني صالحًا",
+  "phoneNumber":"الرجاء إدخال رقم صالح فقط {{minDigits}} - {{maxDigits}} رقم صالحة"
+}

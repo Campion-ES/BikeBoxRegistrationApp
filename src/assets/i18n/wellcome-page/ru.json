@@ -1,0 +1,6 @@
+{
+  "direction": "ltr",
+  "wellcomeMessage": "Добро пожаловать в систему BIKEBOX",
+  "registerButtonText": "регистр",
+  "updateCreditCardText": "Обновление способа оплаты"
+}

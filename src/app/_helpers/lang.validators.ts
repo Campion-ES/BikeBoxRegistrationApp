@@ -1,12 +1,10 @@
 import {
   AbstractControl,
-  FormGroup,
   ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { TLangNames, TLang } from '../_interfaces/interfaces';
-import { GKeybLanGlobal as G } from '../_globals/keyb-lang.global';
+import { HashMap } from '@ngneat/transloco';
 //import { GetGlobalLang } from '../keyb-data/keyb.data';
 
 const TO_LOG = false;
@@ -92,25 +90,18 @@ function isEmptyInputValue(value: any): boolean {
 }
 
 export class LangValidator {
-  // static  _Lang : TLangNames = 'en';
-  static get Lang(): TLangNames {
-    return G.Lang;
-  }
-  // static  set Lang(v : TLangNames) {
-  //     LangValidator._Lang = v;
-  // }
-
   constructor() {}
 
   private static _addMsgLang(
-    controlName: string,
     errName: string,
-    msg: string,
     errs: ValidationErrors = {},
-    errNameOld: string = ''
+    errNameOld: string = '',
+    params: HashMap = {}
   ) {
+    errName = `errors.${errName}`;
     const ret: any = {};
     ret[errName] = {};
+    ret[errName].params = params;
 
     if (!!errNameOld) {
       ret[errName].value = { ...errs[errNameOld] };
@@ -118,34 +109,14 @@ export class LangValidator {
     } else {
       ret[errName].value = { ...errs[errName] };
     }
-
-    ret[errName].lang = msg;
-
-    if (TO_LOG) {
-      console.log(`err:${controlName}.${errName}.lang = ${msg}`);
-    }
     return ret;
   }
   static required(controlName: string): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: ` field must be filled`,
-      //dg: ` field must be filled`,
-      ru: `Поле  должно быть заполнено`,
-      he: ` יש למלא את השדה`,
-      ar: ` يجب ملء حقل `,
-    };
     //{'required': true}
     return (control: AbstractControl): ValidationErrors | null => {
       const errs = Validators.required(control);
       if (!!errs && errs['required']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-        const ret = LangValidator._addMsgLang(
-          controlName,
-          'required',
-          msg,
-          errs
-        );
+        const ret = LangValidator._addMsgLang('required', errs);
         return ret;
       } else {
         return null;
@@ -153,24 +124,14 @@ export class LangValidator {
     };
   }
 
-  static requiredTrue(controlName: string, text: string = ''): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: `Please accept the ${text}`,
-      ru: `Пожалуйста, примите ${text}`,
-      he: `נא אשר את ${text}`,
-      ar: `"${text}" يرجى قبول`,
-    };
+  static requiredTrue(controlName: string): ValidatorFn {
     //{'required': true}
     return (control: AbstractControl): ValidationErrors | null => {
       const errs = Validators.requiredTrue(control);
 
       if (!!errs && errs['required']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
         const ret = LangValidator._addMsgLang(
-          controlName,
-          'requiredTrue',
-          msg,
+          `${controlName}RequiredTrue`,
           errs,
           'required'
         );
@@ -182,22 +143,11 @@ export class LangValidator {
   }
 
   static email(controlName: string): ValidatorFn {
-    //const errName = 'email';
-    const _patternLangs: TLang<string> = {
-      en: `Enter valid email format for field: "${controlName}"`,
-      //dg: `Enter valid email format for field: "${controlName}"`,
-      ru: `Введите правильный email формат для поля "${controlName}"`,
-      he: `"${controlName}"  הזן את פורמט הדוא"ל הנכון עבור השדה `,
-      ar: `"${controlName}" أدخل تنسيق البريد الإلكتروني الصحيح للحقل `,
-    };
-    //
     return (control: AbstractControl): ValidationErrors | null => {
       //// {email: true}
       let errs = Validators.email(control);
       if (!!errs && errs['email']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-        const ret = LangValidator._addMsgLang(controlName, 'email', msg, errs);
+        const ret = LangValidator._addMsgLang('email', errs);
         return ret;
       } else {
         return null;
@@ -217,15 +167,6 @@ export class LangValidator {
         ? `^[0-9]{${minDigits}}$`
         : `^[0-9]{${minDigits},${maxDigits}}$`;
 
-    // const name = controlName;
-    const _patternLangs: TLang<string> = {
-      en: `Enter valid number ${minDigits}-${maxDigits} digits acceptable only : "${controlName}"`,
-      ru: `Введите правильный номер только ${minDigits}-${maxDigits} цифр допустимы : "${controlName}"`,
-      he: `"${controlName}" : נא להזין מספר חוקי רק ספרות ${minDigits}-${maxDigits} חוקיות `,
-      ar: `"${controlName}" : الرجاء إدخال رقم صالح فقط $ {minDigits} - $ {maxDigits} رقم صالحة`,
-      //dg: `Enter valid number ${minDigits}-${maxDigits} digits acceptable only : "${controlName}"`,
-    };
-
     return (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value)) {
         return nullValidator;
@@ -234,123 +175,19 @@ export class LangValidator {
 
       let errs = Validators.pattern(patternRegex)(control);
 
+      const params: HashMap = {
+        minDigits: minDigits,
+        maxDigits: maxDigits,
+      };
+
       if (!!errs && errs['pattern']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
         const ret = LangValidator._addMsgLang(
-          controlName,
-          'number',
-          msg,
+          'phoneNumber',
           errs,
-          'pattern'
-        );
-
-        return ret;
-      } else {
-        return null;
-      }
-    };
-  }
-
-  static pattern(
-    controlName: string,
-    patternRegex: string | RegExp
-  ): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: `Enter valid format for field: "${controlName}"`,
-      //dg: `Enter valid format for field: "${controlName}"`,
-      ru: `Введите правильный формат для поля: "${controlName}"`,
-      he: `"${controlName}" : הזן את פורמט הנכון עבור השדה `,
-      ar: `"${controlName}" : أدخل التنسيق الصحيح للحقل`,
-    };
-
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (isEmptyInputValue(control.value)) {
-        return nullValidator;
-        //   // don't validate empty values to allow optional controls
-      }
-
-      // {'pattern': {'requiredPattern': regexStr, 'actualValue': value}};
-      let errs = Validators.pattern(patternRegex)(control);
-
-      if (!!errs && errs['pattern']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-        const ret = LangValidator._addMsgLang(
-          controlName,
           'pattern',
-          msg,
-          errs
+          params
         );
-        return ret;
-      } else {
-        return null;
-      }
-    };
-  }
-  static minLength(controlName: string, minLength: number): ValidatorFn {
-    const errName = 'minLength';
-    const _patternLangs: TLang<string> = {
-      en: `${controlName}" value must be more than ${minLength}`,
-      //dg: `${controlName}" value must be more than ${minLength}`,
-      ru: `Значение ${controlName}" должно быть больше ${minLength}.`,
-      he: `${minLength}"-חייב להיות יותר מ ` + `${controlName} הערך של`,
-      ar: `${minLength}"-يجب أن يكون أكثر من` + ` ${controlName} قيمة ال`,
-    };
 
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (isEmptyInputValue(control.value && !hasValidLength(control))) {
-        // don't validate empty values to allow optional controls
-        // don't validate values without `length` property
-        return null;
-      }
-      let errs = Validators.minLength(minLength)(control);
-
-      //// {minlength: {requiredLength: 3, actualLength: 2, msg: "bckg"}}
-      if (!!errs && errs['minlength']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-        const ret = LangValidator._addMsgLang(
-          controlName,
-          'minlength',
-          msg,
-          errs
-        );
-        return ret;
-      } else {
-        return null;
-      }
-    };
-  }
-  static maxLength(controlName: string, maxLength: number): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: `${controlName}" value must be less than ${maxLength}`,
-      //dg: `${controlName}" value must be less than ${maxLength}`,
-      ru: `Значение ${controlName}" должно быть меньше ${maxLength}.`,
-      he: `${maxLength}"-חייב להיות פחות מ ` + `${controlName} הערך של`,
-      ar: `يجب أن تكون قيمة ${controlName} "أقل من ${maxLength}`,
-    };
-
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (isEmptyInputValue(control.value && !hasValidLength(control))) {
-        // don't validate empty values to allow optional controls
-        // don't validate values without `length` property
-        return null;
-      }
-      let errs = Validators.maxLength(maxLength)(control);
-
-      //// {maxlength: {requiredLength: 3, actualLength: 2, msg: "bckg"}}
-
-      if (!!errs && errs['maxLength']) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-
-        const ret = LangValidator._addMsgLang(
-          controlName,
-          'maxLength',
-          msg,
-          errs
-        );
         return ret;
       } else {
         return null;
@@ -359,14 +196,6 @@ export class LangValidator {
   }
 
   static teudatZehut(controlName: string): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: `Wrong Israel ID value`,
-      //dg: `Wrong Israel ID value`,
-      ru: `Ошибка ввода удостоверениа личности.`,
-      he: `שגיאה בהזנת תעודת הזהות`,
-      ar: `خطأ في إدخال بطاقة الهوية`,
-    };
-
     return (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value && !hasValidLength(control))) {
         // don't validate empty values to allow optional controls
@@ -379,10 +208,7 @@ export class LangValidator {
       //// {maxlength: {requiredLength: 3, actualLength: 2, msg: "bckg"}}
 
       if (!ft) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-
-        const ret = LangValidator._addMsgLang(controlName, 'teudatZehut', msg, {
+        const ret = LangValidator._addMsgLang('teudatZehut', {
           teudatZehut: false,
           value: value,
         });
@@ -394,14 +220,6 @@ export class LangValidator {
   }
 
   static creditCardLuhn(controlName: string): ValidatorFn {
-    const _patternLangs: TLang<string> = {
-      en: `Wrong credit card number`,
-      //dg: `Wrong credit card number`,
-      ru: `Неверный номер кредитной карты`,
-      he: `מספר כרטיס אשראי שגוי`,
-      ar: `رقم بطاقة الائتمان غير صحيح`,
-    };
-
     return (control: AbstractControl): ValidationErrors | null => {
       if (isEmptyInputValue(control.value && !hasValidLength(control))) {
         // don't validate empty values to allow optional controls
@@ -410,13 +228,8 @@ export class LangValidator {
       }
       let ft = luhnCheck(control.value);
 
-      //// {maxlength: {requiredLength: 3, actualLength: 2, msg: "bckg"}}
-
       if (!ft) {
-        const pathFn = () => _patternLangs[this.Lang];
-        const msg = pathFn();
-
-        const ret = LangValidator._addMsgLang(controlName, 'teudatZehut', msg, {
+        const ret = LangValidator._addMsgLang('creditCard', {
           teudatZehut: false,
         });
         return ret;
@@ -434,25 +247,7 @@ export class LangValidator {
         return null;
       }
 
-      const _patternFormatLangs: TLang<string> = {
-        en: `Date format , have been MM/YY`,
-        //dg: `Date format , have been MM/YY`,
-        ru: `Дата должна иметь формат MM/YY `,
-        he: `MM/YY התאריך חייב להיות בפורמט`,
-        ar: `يجب أن يكون التاريخ بتنسيق MM / YY`,
-      };
-
-      const _patternExpiredLangs: TLang<string> = {
-        en: `Credit card date expired`,
-        //dg: `Credit card date expiredh}`,
-        ru: `Срок действия кредитной карты истек.`,
-        he: `תוקף הכרטיס האשראי נגמר`,
-        ar: `انتهت صلاحية بطاقة الائتمان`,
-      };
-
       const tokef: string = control.value?.toString() ?? '';
-      const pathFormatFn = () => _patternFormatLangs[this.Lang];
-      const msgFormat = pathFormatFn();
 
       let arr: string[] = [];
 
@@ -461,28 +256,21 @@ export class LangValidator {
         tokef[2] != '/' ||
         (arr = tokef.split('/')).length < 2
       ) {
-        return LangValidator._addMsgLang(controlName, 'dateFormat', msgFormat);
+        return LangValidator._addMsgLang(`${controlName}DateFormat`);
       }
 
       let month = +arr[0].toString();
 
       if (month < 1 && month > 12) {
-        return LangValidator._addMsgLang(controlName, 'dateFormat', msgFormat);
+        return LangValidator._addMsgLang(`${controlName}DateFormat`);
       }
-
-      const pathExpiredFn = () => _patternExpiredLangs[this.Lang];
-      const msgExpired = pathExpiredFn();
 
       let year = +arr[1].toString() % 100;
       year = year + 2000;
       const dateNow = new Date();
       const dateTokef = new Date(year, month - 1, 1, 23, 59, 59);
       if (dateNow.getTime() > dateTokef.getTime()) {
-        return LangValidator._addMsgLang(
-          controlName,
-          'dateExpired',
-          msgExpired
-        );
+        return LangValidator._addMsgLang(`${controlName}DateExpired`);
       }
 
       return null;

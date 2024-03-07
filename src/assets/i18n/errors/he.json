@@ -1,0 +1,11 @@
+{
+  "required": " יש למלא את השדה",
+  "imagreeTermsRequiredTrue": "נא אשר את תנאי השימוש",
+  "imagreePolicyRequiredTrue": "נא אשר את מדיניות הפרטיות",
+  "tokefDateFormat": "MM/YY אנא הזן תאריךת בפורמט",
+  "tokefDateExpired": "תוקף כרטיס האשראי פג",
+  "teudatZehut": "שגיאה בהזנת תעודת הזהות",
+  "creditCard": "מספר כרטיס אשראי שגוי",
+  "email": "הזן פורמט אימייל חוקי",
+  "phoneNumber": "נא להזין מספר חוקי רק ספרות {{minDigits}}-{{maxDigits}} חוקיות"
+}

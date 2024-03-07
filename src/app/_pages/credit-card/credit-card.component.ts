@@ -1,21 +1,13 @@
 ///yarn add @myndmanagement/text-mask
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { UsersAccountService, AlertService } from '@app/_services';
 import { Subscription } from 'rxjs';
 import { GKeybLanGlobal as G } from '@app/_globals';
 
 // import { luhnValidator } from 'src/app/_helpers/luhn/luhn.validator';
-import { TLangNames } from '@app/_interfaces/interfaces';
-import { CREDIT_DATA_MULTI, ICreditCardFieldsData } from './credit.card.data';
 import { LangValidator } from '@app/_helpers/lang.validators';
-import { CreditCardModel, IUserModel, UserModel } from '@app/_models';
+import { CreditCardModel, IUserModel } from '@app/_models';
 import {
   MASK_CARD_NUM,
   MASK_CVV_NUM,
@@ -38,18 +30,6 @@ const TO_LOG = true;
 export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'CreditCardValidation';
 
-  //#region Lang
-  private _Lang!: TLangNames; // = GlobalLangPipe$.value;;
-  public get Lang(): TLangNames {
-    return this._Lang;
-  }
-  @Input()
-  public set Lang(v: TLangNames) {
-    if (this._Lang != v) {
-      this._Lang = v;
-      this._onLangChange(v);
-    }
-  }
   //#endregion
   active: string = '';
   paymentForm!: FormGroup;
@@ -77,21 +57,12 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
     private alertSvc: AlertService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.subs.push(
-      G.Lang$.subscribe((lan) => {
-        this.Lang = lan;
-      })
-    );
-  }
-  flds!: ICreditCardFieldsData;
+  ) {}
 
   async ngOnInit() {
     this.getFlowType();
     G.setVisibleKeybToggle(true);
     G.KeyboardVisible = true;
-    this.subs.push(G.Lang$.subscribe((lang) => (this.Lang = lang)));
-    this.Lang = G.Lang;
     this.IntializePaymentForm();
   }
 
@@ -99,20 +70,6 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
     this.route.data
       .pipe(untilDestroyed(this))
       .subscribe((data) => (this.flowType = data['flowType']));
-  }
-
-  private _onLangChange(v: TLangNames, toValidate: boolean = true) {
-    //this change language for validation strings
-    // LangValidator.Lang = v;
-    /// To event !!!
-
-    this.flds = CREDIT_DATA_MULTI[v] as ICreditCardFieldsData; //{...USER_DATA_MULTI[this._Lang]};
-    if (TO_LOG) {
-      console.log(`Set Lang ${v}}`);
-    }
-
-    this._validateMe();
-    return v;
   }
 
   private _validateMe() {
@@ -161,10 +118,7 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
         LangValidator.cardExpired('tokef'),
       ]),
 
-      cvv: new FormControl<string>('XXX', [
-        LangValidator.required('cvv'),
-        LangValidator.minLength('cvv', 3),
-      ]),
+      cvv: new FormControl<string>('XXX', [LangValidator.required('cvv')]),
     });
 
     this.paymentForm.patchValue(this.user);

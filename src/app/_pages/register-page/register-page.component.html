@@ -1,224 +1,232 @@
-﻿<app-page-wrapper [flowType]="flowType" [headerSize]="headerSize">
-  <div [style.direction]="flds.direction">
-    <div class="row">
-      <div class="col-md-12 title">
-        <div>
-          <h4>
-            <strong> {{ flds.title }}</strong>
-          </h4>
-        </div>
-        <div>
-          <h6>
-            <strong>{{ flds.title2 }}</strong>
-          </h6>
+﻿<ng-container *transloco="let t">
+  <app-page-wrapper [flowType]="flowType" [headerSize]="headerSize">
+    <div [style.direction]="t('registerPage.direction')">
+      <div class="row">
+        <div class="col-md-12 title">
+          <div>
+            <h4>
+              <strong> {{ t("registerPage.title") }}</strong>
+            </h4>
+          </div>
+          <div>
+            <h6>
+              <strong>{{ t("registerPage.title2") }}</strong>
+            </h6>
+          </div>
         </div>
       </div>
-    </div>
 
-    <form form2keyb [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-content">
-        <div class="row">
-          <div class="col-3 no-gutters">
-            <div class="input-group">
-              <span id="id-label-firstName">
-                <label class="control-label">{{
-                  flds.firstName.label
-                }}</label></span
-              >
-              <input
-                to-keyb
-                type="text"
-                formControlName="firstName"
-                class="form-control"
-                [ngClass]="getClasses('firstName')"
-                [placeholder]="flds.firstName.placeholder"
-                aria-describedby="id-label-firstName"
-              />
-              <and-err-input-panel
-                name="firstName"
-                [f]="f"
-              ></and-err-input-panel>
+      <form form2keyb [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-content">
+          <div class="row">
+            <div class="col-3 no-gutters">
+              <div class="input-group">
+                <span id="id-label-firstName">
+                  <label class="control-label">{{
+                    t("registerPage.firstName.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb
+                  type="text"
+                  formControlName="firstName"
+                  class="form-control"
+                  [ngClass]="getClasses('firstName')"
+                  [placeholder]="t('registerPage.firstName.placeholder')"
+                  aria-describedby="id-label-firstName"
+                />
+                <and-err-input-panel
+                  name="firstName"
+                  [f]="f"
+                ></and-err-input-panel>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="input-group">
+                <span id="id-label-lastName">
+                  <label class="control-label">{{
+                    t("registerPage.lastName.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb
+                  type="text"
+                  formControlName="lastName"
+                  class="form-control"
+                  [ngClass]="getClasses('lastName')"
+                  [placeholder]="t('registerPage.lastName.placeholder')"
+                  aria-describedby="id-label-lastName"
+                />
+                <and-err-input-panel
+                  name="lastName"
+                  [f]="f"
+                ></and-err-input-panel>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="input-group">
+                <span id="id-label-passport">
+                  <label class="control-label">{{
+                    t("registerPage.passport.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb="dg"
+                  type="string"
+                  formControlName="passport"
+                  class="form-control"
+                  [ngClass]="getClasses('passport')"
+                  [placeholder]="t('registerPage.passport.placeholder')"
+                  aria-describedby="id-label-passport"
+                />
+                <and-err-input-panel
+                  name="passport"
+                  [f]="f"
+                ></and-err-input-panel>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="input-group">
+                <span id="id-label-phone">
+                  <label class="control-label">{{
+                    t("registerPage.phone.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb="dg"
+                  type="number"
+                  formControlName="phone"
+                  class="form-control"
+                  [ngClass]="getClasses('phone')"
+                  [placeholder]="t('registerPage.phone.placeholder')"
+                  aria-describedby="id-label-phone"
+                />
+                <and-err-input-panel name="phone" [f]="f"></and-err-input-panel>
+              </div>
             </div>
           </div>
-          <div class="col-3">
-            <div class="input-group">
-              <span id="id-label-lastName">
-                <label class="control-label">{{
-                  flds.lastName.label
-                }}</label></span
-              >
-              <input
-                to-keyb
-                type="text"
-                formControlName="lastName"
-                class="form-control"
-                [ngClass]="getClasses('lastName')"
-                [placeholder]="flds.lastName.placeholder"
-                aria-describedby="id-label-lastName"
-              />
-              <and-err-input-panel
-                name="lastName"
-                [f]="f"
-              ></and-err-input-panel>
+          <div class="row">
+            <div class="col-6">
+              <div class="input-group">
+                <span id="id-label-email">
+                  <label class="control-label">{{
+                    t("registerPage.email.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb="en"
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  [ngClass]="getClasses('email')"
+                  [placeholder]="t('registerPage.email.placeholder')"
+                  aria-describedby="id-label-email"
+                />
+                <and-err-input-panel name="email" [f]="f"></and-err-input-panel>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="input-group">
+                <span id="id-label-address">
+                  <label class="control-label">{{
+                    t("registerPage.address.label")
+                  }}</label></span
+                >
+                <input
+                  to-keyb
+                  type="text"
+                  formControlName="address"
+                  class="form-control"
+                  [ngClass]="getClasses('address')"
+                  [placeholder]="t('registerPage.address.placeholder')"
+                  aria-describedby="id-label-address"
+                />
+                <and-err-input-panel
+                  name="address"
+                  [f]="f"
+                ></and-err-input-panel>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="input-group" id="id-label-ravkav">
+                <strong class="control-label">{{
+                  t("registerPage.ravkav.label")
+                }}</strong>
+                <input
+                  to-keyb
+                  type="text"
+                  formControlName="ravkav"
+                  class="form-control"
+                  [ngClass]="getClasses('ravkav')"
+                  [placeholder]="t('registerPage.ravkav.placeholder')"
+                  aria-describedby="id-label-ravkav"
+                />
+                <and-err-input-panel name="ravkav" [f]="f">
+                </and-err-input-panel>
+              </div>
             </div>
           </div>
-          <div class="col-3">
-            <div class="input-group">
-              <span id="id-label-passport">
-                <label class="control-label">{{
-                  flds.passport.label
-                }}</label></span
-              >
-              <input
-                to-keyb="dg"
-                type="string"
-                formControlName="passport"
-                class="form-control"
-                [ngClass]="getClasses('passport')"
-                [placeholder]="flds.passport.placeholder"
-                aria-describedby="id-label-passport"
-              />
-              <and-err-input-panel
-                name="passport"
-                [f]="f"
-              ></and-err-input-panel>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="input-group">
-              <span id="id-label-phone">
-                <label class="control-label">{{
-                  flds.phone.label
-                }}</label></span
-              >
-              <input
-                to-keyb="dg"
-                type="number"
-                formControlName="phone"
-                class="form-control"
-                [ngClass]="getClasses('phone')"
-                [placeholder]="flds.phone.placeholder"
-                aria-describedby="id-label-phone"
-              />
-              <and-err-input-panel name="phone" [f]="f"></and-err-input-panel>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="input-group">
-              <span id="id-label-email">
-                <label class="control-label">{{
-                  flds.email.label
-                }}</label></span
-              >
-              <input
-                to-keyb="en"
-                type="email"
-                formControlName="email"
-                class="form-control"
-                [ngClass]="getClasses('email')"
-                [placeholder]="flds.email.placeholder"
-                aria-describedby="id-label-email"
-              />
-              <and-err-input-panel name="email" [f]="f"></and-err-input-panel>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="input-group">
-              <span id="id-label-address">
-                <label class="control-label">{{
-                  flds.address.label
-                }}</label></span
-              >
-              <input
-                to-keyb
-                type="text"
-                formControlName="address"
-                class="form-control"
-                [ngClass]="getClasses('address')"
-                [placeholder]="flds.address.placeholder"
-                aria-describedby="id-label-address"
-              />
-              <and-err-input-panel name="address" [f]="f"></and-err-input-panel>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="input-group" id="id-label-ravkav">
-              <strong class="control-label">{{ flds.ravkav.label }}</strong>
-              <input
-                to-keyb
-                type="text"
-                formControlName="ravkav"
-                class="form-control"
-                [ngClass]="getClasses('ravkav')"
-                [placeholder]="flds.ravkav.placeholder"
-                aria-describedby="id-label-ravkav"
-              />
-              <and-err-input-panel name="ravkav" [f]="f"> </and-err-input-panel>
-            </div>
-          </div>
-        </div>
 
-        <div class="terms-and-condition">
-          <!--------IAMAGREE POLICY---------->
-          <div class="terms right-terms">
-            <div style="display: flex; flex-direction: column">
-              <div class="terms-toggle">
-                <label class="toggle-label"
-                  >{{ flds.iamagree.label }}
-                  <a class="link" href="http://google.com" target="_blank">
-                    {{ flds.pay.policy.text }}
-                  </a>
-                </label>
-                <div class="checkbox-wrapper">
-                  <label class="switch-checkbox">
-                    <input
-                      type="checkbox"
-                      name="imagreePolicy"
-                      formControlName="imagreePolicy"
-                      (change)="OnSliderChange($event, 'imagreePolicy')"
-                    />
-                    <span class="slider-checkbox round-checkbox"></span>
+          <div class="terms-and-condition">
+            <!--------IAMAGREE POLICY---------->
+            <div class="terms right-terms">
+              <div style="display: flex; flex-direction: column">
+                <div class="terms-toggle">
+                  <label class="toggle-label"
+                    >{{ t("registerPage.iamagree.label") }}
+                    <a class="link" href="http://google.com" target="_blank">
+                      {{ t("registerPage.pay.policy.text") }}
+                    </a>
                   </label>
+                  <div class="checkbox-wrapper">
+                    <label class="switch-checkbox">
+                      <input
+                        type="checkbox"
+                        name="imagreePolicy"
+                        formControlName="imagreePolicy"
+                        (change)="OnSliderChange($event, 'imagreePolicy')"
+                      />
+                      <span class="slider-checkbox round-checkbox"></span>
+                    </label>
+                  </div>
+                </div>
+                <and-err-input-panel name="imagreePolicy" [f]="f">
+                </and-err-input-panel>
+              </div>
+            </div>
+            <div></div>
+            <!--------IAMAGREE TERMS---------->
+            <div class="terms left-terms">
+              <div style="display: flex; flex-direction: column">
+                <div class="terms-toggle">
+                  <label class="toggle-label"
+                    >{{ t("registerPage.iamagree.label") }}
+                    <a class="link" href="http://google.com" target="_blank">
+                      {{ t("registerPage.pay.terms.text") }}
+                    </a>
+                  </label>
+                  <div class="checkbox-wrapper">
+                    <label class="switch-checkbox">
+                      <input
+                        type="checkbox"
+                        name="imagreeTerms"
+                        formControlName="imagreeTerms"
+                        (change)="OnSliderChange($event, 'imagreeTerms')"
+                      />
+                      <span class="slider-checkbox round-checkbox"></span>
+                    </label>
+                  </div>
                 </div>
               </div>
-              <and-err-input-panel name="imagreePolicy" [f]="f">
+              <and-err-input-panel name="imagreeTerms" [f]="f">
               </and-err-input-panel>
             </div>
           </div>
-          <div></div>
-          <!--------IAMAGREE TERMS---------->
-          <div class="terms left-terms">
-            <div style="display: flex; flex-direction: column">
-              <div class="terms-toggle">
-                <label class="toggle-label"
-                  >{{ flds.iamagree.label }}
-                  <a class="link" href="http://google.com" target="_blank">
-                    {{ flds.pay.terms.text }}
-                  </a>
-                </label>
-                <div class="checkbox-wrapper">
-                  <label class="switch-checkbox">
-                    <input
-                      type="checkbox"
-                      name="imagreeTerms"
-                      formControlName="imagreeTerms"
-                      (change)="OnSliderChange($event, 'imagreeTerms')"
-                    />
-                    <span class="slider-checkbox round-checkbox"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <and-err-input-panel name="imagreeTerms" [f]="f">
-            </and-err-input-panel>
-          </div>
+          <button class="btn btn-outline-info medium" type="submit">
+            {{ t("registerPage.continueButton") }}
+          </button>
         </div>
-        <button class="btn btn-outline-info medium" type="submit">
-          {{ flds.continueButton }}
-        </button>
-      </div>
-    </form>
-  </div>
-</app-page-wrapper>
+      </form>
+    </div>
+  </app-page-wrapper>
+</ng-container>

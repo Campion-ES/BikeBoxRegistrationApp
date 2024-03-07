@@ -1,11 +1,17 @@
-<app-page-wrapper
-  [flowType]="flowType"
-  [headerSize]="headerSize"
-  [playAnimation]="playAnimation"
->
-  <h4 class="wellcome-message">{{ flds.wellcomeMessage }}</h4>
-  <button class="btn btn-outline-info big" (click)="goToRegister()">
-    {{ flds.registerButtonText }}
-  </button>
-  <h6 class="update-payment-method">{{ flds.updateCreditCardText }}</h6>
-</app-page-wrapper>
+<ng-container *transloco="let t">
+  <app-page-wrapper
+    [flowType]="flowType"
+    [headerSize]="headerSize"
+    [playAnimation]="playAnimation"
+  >
+    <div class="content" [style.direction]="t('wellcomePage.direction')">
+      <h4 class="wellcome-message">{{ t("wellcomePage.wellcomeMessage") }}</h4>
+      <button class="btn btn-outline-info big" (click)="goToRegister()">
+        {{ t("wellcomePage.registerButtonText") }}
+      </button>
+      <h6 class="update-payment-method">
+        {{ t("wellcomePage.updateCreditCardText") }}
+      </h6>
+    </div>
+  </app-page-wrapper>
+</ng-container>

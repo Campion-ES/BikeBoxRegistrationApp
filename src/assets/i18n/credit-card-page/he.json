@@ -1,0 +1,39 @@
+{
+  "direction": "rtl",
+  "title": "פרטי כרטיס אשראי",
+  "title2": "נא להזין את פרטי כרטיס האשראי",
+  "ownerFirstName": {
+    "name": "firstName",
+    "label": "שם פרטי של בעל הכרטיס*",
+    "placeholder": "שם פרטי"
+  },
+  "ownerLastName": {
+    "name": "lastName",
+    "label": "שם משפחה של בעל הכרטיס*",
+    "placeholder": "שם משפחה"
+  },
+
+  "passport": {
+    "name": "passport",
+    "label": "תעדת זהות*",
+    "placeholder": "תעדת זהות"
+  },
+
+  "cardNumber": {
+    "name": "cardNumber",
+    "label": "מספר כרטיס אשראי*",
+    "placeholder": "מספר כרטיס אשראי"
+  },
+  "tokef": {
+    "name": "tokef",
+    "label": "תוקף*",
+    "placeholder": "MM/YY"
+  },
+
+  "cvv": {
+    "name": "ccv",
+    "label": "קוד אבטחה*",
+    "placeholder": "3 digits only"
+  },
+  "saveButtonText": "שמור"
+}

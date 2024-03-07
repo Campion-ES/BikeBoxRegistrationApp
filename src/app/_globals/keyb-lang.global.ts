@@ -14,7 +14,7 @@ export interface IKeybLanGlobal {
   get KeybLang$(): Observable<TLangNames2>;
   get KeybLang(): TLangNames2;
   get visibleKeybToggle(): Observable<boolean>;
-  setVisibleKeybToggle(value: boolean):void;
+  setVisibleKeybToggle(value: boolean): void;
   setLang(TLangNames: string): void;
   setAlterLang(TLangNames2: string): void;
   clearAlterLang(): void;

@@ -1,0 +1,39 @@
+{
+  "direction": "rtl",
+  "title": "تفاصيل بطاقة الائتمان",
+  "title2": "الرجاء إدخال تفاصيل بطاقة الائتمان",
+  "ownerFirstName": {
+    "name": "firstName",
+    "label": "الاسم الأول لحامل البطاقة",
+    "placeholder": "الاسم الأول"
+  },
+  "ownerLastName": {
+    "name": "lastName",
+    "label": "الاسم الأخير لحامل البطاقة*",
+    "placeholder": "اسم عائلة"
+  },
+
+  "passport": {
+    "name": "passport",
+    "label": "بطاقة تعريف*",
+    "placeholder": "بطاقة تعريف"
+  },
+
+  "cardNumber": {
+    "name": "cardNumber",
+    "label": "رقم البطاقة الائتمانية*",
+    "placeholder": "رقم البطاقة الائتمانية"
+  },
+  "tokef": {
+    "name": "tokef",
+    "label": "صالحة ل*",
+    "placeholder": "MM/YY"
+  },
+
+  "cvv": {
+    "name": "ccv",
+    "label": "كود الحماية CVV*",
+    "placeholder": "3 digits only"
+  },
+  "saveButtonText": "إحفظ"
+}

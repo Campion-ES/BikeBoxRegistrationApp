@@ -1,0 +1,39 @@
+{
+  "direction": "ltr",
+  "title": "Credit Card Details",
+  "title2": "Please enter credit card details",
+  "ownerFirstName": {
+    "name": "firstName",
+    "label": "Card owner first name*",
+    "placeholder": "First Name "
+  },
+  "ownerLastName": {
+    "name": "lastName",
+    "label": "Card owner last name*",
+    "placeholder": "Last name "
+  },
+
+  "passport": {
+    "name": "passport",
+    "label": "ID Number*",
+    "placeholder": "ID number"
+  },
+
+  "cardNumber": {
+    "name": "cardNumber",
+    "label": "Credit Card Number*",
+    "placeholder": ""
+  },
+  "tokef": {
+    "name": "tokef",
+    "label": "Valid to*",
+    "placeholder": ""
+  },
+
+  "cvv": {
+    "name": "ccv",
+    "label": "Security Code*",
+    "placeholder": "3 digits only"
+  },
+  "saveButtonText": "Save"
+}

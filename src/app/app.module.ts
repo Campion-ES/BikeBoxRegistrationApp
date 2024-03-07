@@ -17,6 +17,7 @@ import { ToKeybModule } from './keyboard/to-keyb/to-keyb.module';
 import { HomePageComponent } from './_pages/home-page/home-page.component';
 import { LangSwitcherComponent } from './_components/lang-switcher/lang-switcher.component';
 import { KeyboardToggleComponent } from './_components/keyboard-toggle/keyboard-toggle.component';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { KeyboardToggleComponent } from './_components/keyboard-toggle/keyboard-
     KeyboardModule,
     ToKeybModule,
     TextMaskModule,
+    TranslocoRootModule,
 
     // AccountModule,
     // UsersModule,

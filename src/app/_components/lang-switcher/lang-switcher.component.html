@@ -8,9 +8,6 @@
     <img class="lang-icon" src="assets/lang-icon.svg" alt="lang-switcher" />
   </button>
   <ul class="dropdown-menu">
-    <li class="dropdown-item" (click)="setLang('en')">English</li>
-    <li class="dropdown-item" (click)="setLang('he')">עברית</li>
-    <li class="dropdown-item" (click)="setLang('ru')">Русский</li>
-    <li class="dropdown-item" (click)="setLang('ar')">عربيه</li>
+    <li *ngFor="let lang of availableLangs;" class="dropdown-item" (click)="setLang(lang.id)">{{lang.label}}</li>
   </ul>
 </div>

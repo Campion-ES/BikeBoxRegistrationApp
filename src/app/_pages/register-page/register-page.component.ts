@@ -4,15 +4,13 @@ import { GKeybLanGlobal as G } from '@app/_globals';
 
 import { UsersAccountService, AlertService, GUser } from '@app/_services';
 import { LangValidator } from '@app/_helpers/lang.validators';
-import { TLangNames } from '@app/_interfaces/interfaces';
-import { IUserDetailsFieldsData, USER_DATA_MULTI } from './register.data';
-import { ILANG_DESCR } from '@app/keyboard/keyb-data/keyb.data';
 import { Subscription } from 'rxjs';
 import { UserModel, WideUserModel } from '@app/_models';
 import { environment } from '@environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FlowType } from '@app/_models/flow-type.enum';
 import { HeaderSize } from '@app/_models/header-size.enum';
+import { TranslocoService } from '@ngneat/transloco';
 
 const TO_TEST_USER = environment.toTestUsers;
 
@@ -32,11 +30,14 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   flowType = FlowType.register;
   headerSize = HeaderSize.small;
   //flags = this.userSvc.flags;
+  termsMessage: string = '';
+  policyMessage: string = '';
 
   constructor(
     private router: Router,
     private userSvc: UsersAccountService,
-    private alertSvc: AlertService
+    private alertSvc: AlertService,
+    private translocoService: TranslocoService
   ) {}
   get user() {
     return GUser;
@@ -45,22 +46,9 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   model?: UserModel | undefined;
   get itsOK(): boolean {
     return this.form.valid;
-    // throw new Error('Method not implemented.');
   }
 
-  public set Lang(v: TLangNames) {
-    // if( v != this._Lang){
-    this._Lang = v;
-    this._onLangChange(v);
-    // }
-  }
-
-  private _Lang: TLangNames = G.Lang;
-  public get Lang(): TLangNames {
-    return this._Lang;
-  }
   private subs: Subscription[] = [];
-  flds!: IUserDetailsFieldsData;
 
   ngOnDestroy(): void {
     this.subs.forEach((s) => s.unsubscribe());
@@ -70,8 +58,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     G.setVisibleKeybToggle(true);
     G.KeyboardVisible = true;
-    this.subs.push(G.Lang$.subscribe((lang) => (this.Lang = lang)));
-    this.Lang = G.Lang;
     this._createRegisterForm();
   }
 
@@ -94,13 +80,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       lastName: new FormControl<string>('', [
         LangValidator.required('lastName'),
       ]),
-      // sysname: new FormControl<string>(_sysName, [
-      //   LangValidator.required('sysname'),
-      // ]),
-      // password: new FormControl<string>(_password, [
-      //   LangValidator.required('password'),
-      // ]),
-
       passport: new FormControl('', [
         LangValidator.required('passport'),
         LangValidator.teudatZehut('passport'),
@@ -119,11 +98,12 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       ]),
 
       //  ravkav: new FormControl('',[]),
+
       imagreeTerms: new FormControl<boolean>(false, [
-        LangValidator.requiredTrue('imagreeTerms', this.flds.pay.terms.text),
+        LangValidator.requiredTrue('imagreeTerms'),
       ]),
       imagreePolicy: new FormControl<boolean>(false, [
-        LangValidator.requiredTrue('imagreePolicy', this.flds.pay.policy.text),
+        LangValidator.requiredTrue('imagreePolicy'),
       ]),
     });
   }
@@ -157,15 +137,15 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
     //console.log(c.name,c.touched);
   }
 
-  private _onLangChange(v: TLangNames) {
-    //this change language for validation strings
-    // LangValidator.Lang = v;
-    /// To event !!!
-    // this._Lang = v;
-    this.flds = USER_DATA_MULTI[this._Lang] as IUserDetailsFieldsData; //{...USER_DATA_MULTI[this._Lang]};
-    console.log(`Set Lang ${v}:${ILANG_DESCR[v].name}`);
-    this._validateMe();
-  }
+  // private _onLangChange(v: TLangNames) {
+  //   //this change language for validation strings
+  //   // LangValidator.Lang = v;
+  //   /// To event !!!
+  //   // this._Lang = v;
+  //   this.flds = USER_DATA_MULTI[this._Lang] as IUserDetailsFieldsData; //{...USER_DATA_MULTI[this._Lang]};
+  //   console.log(`Set Lang ${v}:${ILANG_DESCR[v].name}`);
+  //   this._validateMe();
+  // }
   private _validateMe() {
     //   try {
     if (this.form) {

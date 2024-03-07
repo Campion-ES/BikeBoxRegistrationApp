@@ -1,19 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
-export type TErrLang = { name: string; lang: string };
+import { HashMap } from '@ngneat/transloco';
+export type TErrLang = { name: string; lang: string; params: HashMap };
 const TO_LOG = false;
 
 @Component({
   selector: 'and-err-input-panel',
   template: `
-    <label
-      class="err-input-panel"
-      [style.visibility]="isErrs ? 'visible' : 'hidden'"
-    >
-      <div class="invalid-feedback" *ngFor="let err of errArr">
-        {{ err.lang }}
-      </div>
-    </label>
+    <ng-container *transloco="let t">
+      <label
+        class="err-input-panel"
+        [style.visibility]="isErrs ? 'visible' : 'hidden'"
+      >
+        <div class="invalid-feedback" *ngFor="let err of errArr">
+          {{ t(err.name, err.params) }}
+        </div>
+      </label>
+    </ng-container>
   `,
   styles: [
     `
@@ -60,7 +63,8 @@ export class ErrInputPanelComponent implements OnInit {
           const objError = controlErrors[nameError];
           langErr = 'native:' + JSON.stringify(objError, undefined, 2);
         }
-        errArr.push({ name: nameError, lang: langErr });
+        const params = controlErrors[nameError].params ?? {};
+        errArr.push({ name: nameError, lang: langErr, params: params });
 
         if (TO_LOG) {
           console.log('name: ' + nameError + ', err value: ', langErr);

@@ -1,0 +1,66 @@
+{
+  "direction": "ltr",
+  "title": "Register for the bicycle parking system",
+  "title2": "To use the parking lot services, please fill in the following details:",
+  "firstName": {
+    "name": "firstName",
+    "label": "First name*",
+    "placeholder": "First name"
+  },
+  "lastName": {
+    "name": "lastName",
+    "label": "Last Name*",
+    "placeholder": "last Name"
+  },
+  "sysname": {
+    "name": "sysname",
+    "label": "User name",
+    "placeholder": "unique user name"
+  },
+  "passport": {
+    "name": "passport",
+    "label": "ID number*",
+    "placeholder": "ID number"
+  },
+  "password": {
+    "name": "password",
+    "label": "Password.",
+    "placeholder": "password"
+  },
+  "email": {
+    "name": "email",
+    "label": "email*",
+    "placeholder": "email"
+  },
+  "address": {
+    "name": "address",
+    "label": "Address",
+    "placeholder": "Address"
+  },
+  "phone": {
+    "name": "phone",
+    "label": "Phone Number*",
+    "placeholder": "Your phone number , digits only"
+  },
+  "ravkav": {
+    "name": "ravkav",
+    "label": "Rav Kav No:",
+    "placeholder": "Rav Kav No:"
+  },
+  "iamagree": {
+    "name": "iamagree",
+    "label": "I am agree with",
+    "placeholder": ""
+  },
+  "pay": {
+    "terms": {
+      "ref": "/en/registration/payment/terms",
+      "text": "Terms of use"
+    },
+    "policy": {
+      "ref": "/en/registration/payment/policy",
+      "text": "Privacy policy"
+    }
+  },
+  "continueButton": "Continue"
+}

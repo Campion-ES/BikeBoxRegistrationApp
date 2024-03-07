@@ -1,0 +1,66 @@
+{
+  "direction": "rtl",
+  "title": "הרשמה למערכת חניון אופניים",
+  "title2": "כדי להשתמש בשירותי החניון אנא מלא את הפרטים הבאים:",
+  "firstName": {
+    "name": "firstName",
+    "label": "שם פרטי*",
+    "placeholder": "שם פרטי"
+  },
+  "lastName": {
+    "name": "lastName",
+    "label": "שם משפחה*",
+    "placeholder": "שם משפחה"
+  },
+  "sysname": {
+    "name": "lastName",
+    "label": "שם משתמש",
+    "placeholder": "שם המשתמש חייב להיות ייחודי במערכת"
+  },
+  "password": {
+    "name": "password",
+    "label": "סיסמה",
+    "placeholder": "תמלא/ה סיסםה"
+  },
+  "passport": {
+    "name": "passport",
+    "label": "מספר ת.ז*",
+    "placeholder": "מספר תעדת זהות או דרכון"
+  },
+  "email": {
+    "name": "email",
+    "label": "אימייל*",
+    "placeholder": "אימייל"
+  },
+  "address": {
+    "name": "address",
+    "label": "כתובת מגורים",
+    "placeholder": "כתובת מגורים"
+  },
+  "phone": {
+    "name": "phone",
+    "label": "מספר טלפון*",
+    "placeholder": "מספר טלפון"
+  },
+  "ravkav": {
+    "name": "ravkav",
+    "label": "מספר רב קו",
+    "placeholder": "מספר רב קו"
+  },
+  "iamagree": {
+    "name": "iamagree",
+    "label": "אני מסכים ל",
+    "placeholder": ""
+  },
+  "pay": {
+    "terms": {
+      "ref": "/he/registration/payment/terms",
+      "text": "תנאי השימוש"
+    },
+    "policy": {
+      "ref": "/he/registration/payment/policy",
+      "text": "מדיניות הפרטיות"
+    }
+  },
+  "continueButton": "המשך"
+}

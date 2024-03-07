@@ -1,0 +1,66 @@
+{
+  "direction": "ltr",
+  "title": "Зарегистрируйтесь в системе парковки велосипедов",
+  "title2": "Чтобы воспользоваться услугами системы, пожалуйста, заполните следующие данные:",
+  "firstName": {
+    "name": "firstName",
+    "label": "Имя*",
+    "placeholder": "Введите имя "
+  },
+  "lastName": {
+    "name": "lastName",
+    "label": "Фамилия*",
+    "placeholder": "Введите фамилию"
+  },
+  "sysname": {
+    "name": "lastName",
+    "label": "Имя пользователя",
+    "placeholder": "уникальное имя пользователя"
+  },
+  "password": {
+    "name": "password",
+    "label": "Пароль.",
+    "placeholder": "пароль"
+  },
+  "passport": {
+    "name": "passport",
+    "label": "Удостоверение*",
+    "placeholder": "Удостоверение личности"
+  },
+  "email": {
+    "name": "email",
+    "label": "Электронная почта*",
+    "placeholder": "Электронная почта"
+  },
+  "address": {
+    "name": "address",
+    "label": "Адрес проживания",
+    "placeholder": "Введите ваш адрес проживания"
+  },
+  "phone": {
+    "name": "phone",
+    "label": "Номер телефона*",
+    "placeholder": "Введите номер телефона"
+  },
+  "ravkav": {
+    "name": "ravkav",
+    "label": "Номер \"Рав Кав\"",
+    "placeholder": "Введите номер \"Рав Кав\""
+  },
+  "iamagree": {
+    "name": "iamagree",
+    "label": "я согласен/на",
+    "placeholder": ""
+  },
+  "pay": {
+    "terms": {
+      "ref": "/en/registration/payment/terms",
+      "text": "Условия эксплуатации"
+    },
+    "policy": {
+      "ref": "/en/registration/payment/policy",
+      "text": "политика конфиденциальности"
+    }
+  },
+  "continueButton": "Продолжать"
+}

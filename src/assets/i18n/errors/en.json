@@ -1,0 +1,11 @@
+{
+  "required": "field must be filled",
+  "imagreeTermsRequiredTrue": "Please accept the Terms of use",
+  "imagreePolicyRequiredTrue": "Please accept the Privacy policy",
+  "tokefDateFormat": "Date format , have been MM/YY",
+  "tokefDateExpired": "Credit card date expired",
+  "teudatZehut": "Wrong Israel ID value",
+  "creditCard": "Wrong credit card number",
+  "email": "Enter valid email format",
+  "phoneNumber": "Enter valid number {{minDigits}}-{{maxDigits}} digits acceptable only"
+}
