@@ -1,0 +1,11 @@
+<app-page-wrapper
+  [flowType]="flowType"
+  [headerSize]="headerSize"
+  [playAnimation]="playAnimation"
+>
+  <h4 class="wellcome-message">{{ flds.wellcomeMessage }}</h4>
+  <button class="btn btn-outline-info big" (click)="goToRegister()">
+    {{ flds.registerButtonText }}
+  </button>
+  <h6 class="update-payment-method">{{ flds.updateCreditCardText }}</h6>
+</app-page-wrapper>

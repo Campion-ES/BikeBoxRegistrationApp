@@ -1,0 +1,12 @@
+.dropdown-toggle::after {
+  display: none;
+}
+
+.lang-switcher-btn {
+  background: none;
+  border: none;
+
+  img {
+    width: 30pt;
+  }
+}

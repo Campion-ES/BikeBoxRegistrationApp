@@ -1,0 +1,44 @@
+.header {
+  position: relative;
+  // height: 200px;
+  // background-image: url(./../../../assets/yelow_hader_background.svg);
+  height: 16.13em;
+  /* UI Properties */
+  background: url(./../../../assets/yelow_hader_background.svg);
+  background-size: 77.92em;
+
+  .bike-loader {
+    background-repeat: repeat-x;
+    background-image: url(./../../../assets/Bicycle.svg);
+    background-size: 77.92em;
+    height: 16.13em;
+    width: 100%;
+    &.play {
+      // visibility: visible;
+      animation: loading 2s infinite ease-out;
+    }
+  }
+
+  @keyframes loading {
+    100% {
+      background-position-x: 1728px;
+    }
+  }
+
+  .logo {
+    height: 15.5em;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 50%;
+  }
+}
+
+.wellcome-message {
+  padding-bottom: 1em;
+}
+
+.update-payment-method {
+  padding-top: 1.38em;
+  text-decoration: underline;
+}

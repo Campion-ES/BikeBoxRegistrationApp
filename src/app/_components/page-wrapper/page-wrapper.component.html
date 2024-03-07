@@ -1,0 +1,27 @@
+<div class="card col-12">
+  <div
+    class="col-md-12 header"
+    [style.background-image]="backgroundImageStyle"
+    [style.height]="headerHeightStyle"
+  >
+    <div
+      class="bikes-strip"
+      [style.height]="headerHeightStyle"
+      [style.background-size]="stripBackgroundSizeStyle"
+      [ngClass]="{ play: playAnimation }"
+    ></div>
+    <img
+      class="logo"
+      src="assets/bikebox logo.svg"
+      [style.height]="logoHeightStyle"
+      alt="BikeBox"
+    />
+  </div>
+  <div
+    class="content"
+    [style.height]="contentHeightStyle"
+    [style.padding-top]="contentPaddingStyle"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

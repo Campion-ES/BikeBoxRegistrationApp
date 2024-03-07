@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <button
+    class="btn btn-secondary dropdown-toggle lang-switcher-btn"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <img class="lang-icon" src="assets/lang-icon.svg" alt="lang-switcher" />
+  </button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-item" (click)="setLang('en')">English</li>
+    <li class="dropdown-item" (click)="setLang('he')">עברית</li>
+    <li class="dropdown-item" (click)="setLang('ru')">Русский</li>
+    <li class="dropdown-item" (click)="setLang('ar')">عربيه</li>
+  </ul>
+</div>

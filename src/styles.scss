@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "/src/assets/fonts_googleapi.scss";
+@import "@fontsource/rubik";
+
+body {
+  font-family: "Rubik";
+  font-size: 0.8rem;
+}
+
+.attached-to-keyb {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  border-width: 3px;
+  outline: 0;
+  box-shadow: 0 0 0 0.25em rgba(13, 110, 253, 0.25);
+}
+dialog {
+  display: grid;
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.input-group > .form-control {
+  border: none;
+  box-shadow: unset;
+  border-bottom: 1px solid #2b2a6e;
+  color: #2b2a6e;
+  border-radius: unset;
+  margin-bottom: 10px;
+  text-align: center;
+  font: 1.42em Rubik;
+  font-weight: 700;
+  padding: 0;
+
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  background-color: white !important;
+  box-shadow: unset !important;
+  width: 100%;
+
+  &::placeholder {
+    color: #2b2a6e;
+    opacity: 0.5;
+  }
+}
+
+.input-group {
+  flex-direction: column;
+}
+
+button {
+  &.btn-outline-info {
+    margin: 0 auto;
+    border-radius: 70px;
+    border: 0.2em solid #169dd9;
+    background-color: white;
+    color: #169dd9;
+    font: 1.42em Rubik;
+
+    &.big {
+      padding: 0.54em 4em;
+    }
+
+    &.medium {
+      padding: 0.4em 2em;
+      border-width: 0.15em;
+    }
+
+    &:hover {
+      color: white;
+      background-color: #169dd9;
+    }
+  }
+}
+
+.input-group {
+  .control-label {
+    color: #2b2a6e;
+    font: 1.32em Rubik;
+  }
+}
+
+h4 {
+  font: 2.83em Rubik;
+}
+
+h6 {
+  font: 1.83em Rubik;
+}
+
+label {
+  font: 1.32em Rubik;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-top: 5rem;
+
+  strong {
+    color: white;
+  }
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 30px;
+  padding: 2em;
+  margin: 0px 4.92em;
+}
+
+.input-group-text {
+  border: unset;
+}
+
+.form-control {
+  margin: 0;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background: none;
+  padding-right: 0;
+}
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  background: none;
+  padding-right: 0;
+}

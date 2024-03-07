@@ -1,0 +1,37 @@
+@import "/src/app/scss/dialogs.common.scss";
+
+@import "/src/app/scss/slider.checkbox.scss";
+
+.terms-and-condition {
+  display: grid;
+  grid-template-columns: 49.5% 1% 49.5%;
+  .terms {
+    display: flex;
+    flex-direction: column;
+
+    .terms-toggle {
+      display: flex;
+      align-items: center;
+
+      .toggle-label {
+        color: #2b2a6e;
+
+        a {
+          color: #2b2a6e;
+        }
+      }
+
+      .checkbox-wrapper {
+        padding: 0 10px;
+      }
+    }
+
+    &.right-terms {
+      align-items: flex-end;
+    }
+
+    &.left-terms {
+      align-items: flex-start;
+    }
+  }
+}
