@@ -1,0 +1,23 @@
+:host {
+  ::ng-deep {
+    .title {
+      max-width: 60em;
+      margin-top: unset;
+    }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2em;
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+}

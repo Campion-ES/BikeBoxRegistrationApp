@@ -1,5 +1,5 @@
 export enum FlowType {
-  wellcome,
-  register,
-  paymentMethod,
+  wellcome = 'wellcome',
+  register = 'register',
+  paymentMethod = 'payment-method',
 }

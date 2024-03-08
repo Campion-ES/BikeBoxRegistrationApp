@@ -21,7 +21,7 @@ const TO_LOG = false;
   styles: [
     `
       .err-input-panel {
-        background-color: white !important;
+        background-color: transparent !important;
         color: magenta !important;
         font-weight: 500 !important;
         height: 1.5em;

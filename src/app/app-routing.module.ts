@@ -15,7 +15,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./flows/register-flow/register-flow.module').then(
         (m) => m.RegisterFlowModule
-      )
+      ),
+  },
+  {
+    path: 'payment-method',
+    loadChildren: () =>
+      import(
+        './flows/update-payment-method-flow/update-payment-method-flow.module'
+      ).then((m) => m.UpdatePaymentMethodFlowModule),
   },
   {
     path: 'credit-card',

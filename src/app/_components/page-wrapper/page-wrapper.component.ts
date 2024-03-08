@@ -49,12 +49,13 @@ export class PageWrapperComponent implements OnInit {
       case HeaderSize.small:
         this.headerHeightStyle = '8.13em';
         this.logoHeightStyle = '11em';
+        this.contentPaddingStyle = '6em';
         this.contentHeightStyle = 'calc(100vh - 8.4em)';
         this.stripBackgroundSizeStyle = '80em';
         break;
       case HeaderSize.big:
         this.headerHeightStyle = '16.13em';
-        this.logoHeightStyle = '22em';
+        this.logoHeightStyle = '20em';
         this.contentHeightStyle = 'calc(100vh - 11em)';
         this.contentPaddingStyle = '11.25em';
         this.stripBackgroundSizeStyle = 'auto';

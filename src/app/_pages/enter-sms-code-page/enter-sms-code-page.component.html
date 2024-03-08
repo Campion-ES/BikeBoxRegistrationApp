@@ -1,0 +1,34 @@
+<ng-container *transloco="let t">
+  <app-page-wrapper [flowType]="flowType" [headerSize]="headerSize">
+    <div>
+      <div class="row">
+        <div class="col-md-12 title">
+          <div>
+            <h4>
+              <strong> {{ t("smsCodePage.title") }} </strong>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="row content-wrapper">
+        <form form2keyb [formGroup]="form" (ngSubmit)="verifySms()">
+          <div class="content">
+            <input
+              class="oval-input big"
+              to-keyb="dg"
+              type="text"
+              [ngClass]="getClasses('smsVerificationCode')"
+              formControlName="smsVerificationCode"
+              [textMask]="{ mask: maskSmsCode }"
+              placeholder="000000"
+            />
+            <and-err-input-panel name="smsVerificationCode" [f]="f"></and-err-input-panel>
+            <button class="btn btn-outline-info big bottom-btn" type="submit">
+              {{ t("smsCodePage.continueButton") }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </app-page-wrapper>
+</ng-container>

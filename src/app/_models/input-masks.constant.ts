@@ -32,6 +32,15 @@ export const MASK_PASSPORT_NUM = [
   /\d/,
 ];
 
+export const MASK_SMS_CODE = [
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+];
+
 export const MASK_TOKEF_NUM = [
   /\d/,
   /\d/,

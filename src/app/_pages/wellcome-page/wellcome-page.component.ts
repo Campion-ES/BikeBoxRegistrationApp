@@ -30,4 +30,8 @@ export class WellcomePageComponent implements OnInit {
         this.router.navigate(['/register'], { relativeTo: this.route });
       });
   }
+
+  updatePaymentMethod() {
+    this.router.navigate(['/payment-method'], { relativeTo: this.route });
+  }
 }

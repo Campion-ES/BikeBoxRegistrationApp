@@ -161,7 +161,7 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async saveCardDetails() {
-    this.router.navigate([`${FlowType[this.flowType]}/success`]);
+    this.router.navigate([`${this.flowType}/success`]);
     // const hash = this.paymentForm.value;
     // this.model = { ...hash };
 

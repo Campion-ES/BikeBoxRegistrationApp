@@ -19,11 +19,17 @@ const routes: Routes = [
       },
       {
         path: 'form',
-        component: RegisterPageComponent,
+        loadChildren: () =>
+          import('@app/_pages/register-page/register-page.module').then(
+            (m) => m.RegisterPageModule
+          ),
       },
       {
         path: 'credit-card',
-        component: CreditCardComponent,
+        loadChildren: () =>
+          import('@app/_pages/credit-card/credit-card.module').then(
+            (m) => m.CreditCardModule
+          ),
         data: { flowType: FlowType.register },
       },
       {
