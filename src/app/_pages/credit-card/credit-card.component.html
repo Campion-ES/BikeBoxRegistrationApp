@@ -1,163 +1,162 @@
 <ng-container *transloco="let t">
   <app-page-wrapper [flowType]="flowType" [headerSize]="headerSize">
-    <div [style.direction]="t('creditCardPage.direction')">
-      <div class="row">
-        <div class="col-md-12 title">
-          <div>
-            <h4>
-              <strong> {{ t("creditCardPage.title") }} </strong>
-            </h4>
-          </div>
-          <div>
-            <h6>
-              <strong> {{ t("creditCardPage.title2") }}</strong>
-            </h6>
-          </div>
+    <div class="row">
+      <div class="col-md-12 title">
+        <div>
+          <h4>
+            <strong> {{ t("creditCardPage.title") }} </strong>
+          </h4>
+        </div>
+        <div>
+          <h6>
+            <strong> {{ t("creditCardPage.title2") }}</strong>
+          </h6>
         </div>
       </div>
+    </div>
 
-      <form form2keyb [formGroup]="paymentForm" (ngSubmit)="saveCardDetails()">
-        <div class="form-content">
-          <div class="row">
-            <div class="col-4 no-gutters">
-              <div class="input-group">
-                <span id="id-label-firstName">
-                  <strong class="control-label">{{
-                    t("creditCardPage.ownerFirstName.label")
-                  }}</strong></span
-                >
-                <input
-                  to-keyb
-                  type="text"
-                  formControlName="firstName"
-                  class="form-control"
-                  [ngClass]="getClasses('firstName')"
-                  [placeholder]="t('creditCardPage.ownerFirstName.placeholder')"
-                  aria-describedby="id-label-firstName"
-                />
-                <and-err-input-panel
-                  name="firstName"
-                  [f]="f"
-                ></and-err-input-panel>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="input-group">
-                <span id="id-label-lastName">
-                  <strong class="control-label">{{
-                    t("creditCardPage.ownerLastName.label")
-                  }}</strong></span
-                >
-                <input
-                  to-keyb
-                  type="text"
-                  formControlName="lastName"
-                  class="form-control"
-                  [ngClass]="getClasses('lastName')"
-                  [placeholder]="t('creditCardPage.ownerLastName.placeholder')"
-                  aria-describedby="id-label-lastName"
-                />
-                <and-err-input-panel
-                  name="lastName"
-                  [f]="f"
-                ></and-err-input-panel>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="input-group">
-                <span id="id-label-passport">
-                  <strong class="control-label">{{
-                    t("creditCardPage.passport.label")
-                  }}</strong></span
-                >
-                <input
-                  to-keyb="dg"
-                  type="string"
-                  formControlName="passport"
-                  class="form-control"
-                  [ngClass]="getClasses('passport')"
-                  [placeholder]="t('creditCardPage.passport.placeholder')"
-                  aria-describedby="id-label-passport"
-                />
-                <and-err-input-panel
-                  name="passport"
-                  [f]="f"
-                ></and-err-input-panel>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="input-group">
-                <span
-                  ><strong class="control-label">{{
-                    t("creditCardPage.cardNumber.label")
-                  }}</strong></span
-                >
-                <input
-                  class="form-control"
-                  to-keyb="dg"
-                  type="text"
-                  formControlName="cardNumber"
-                  [textMask]="{ mask: maskCardNum }"
-                  id="id-credit-card-card-number"
-                  [ngClass]="getClasses('cardNumber')"
-                  placeholder="XXXX-XXXX-XXXX-XXXX"
-                />
-              </div>
-
+    <form form2keyb [formGroup]="paymentForm" (ngSubmit)="saveCardDetails()">
+      <div class="form-content">
+        <div class="row">
+          <div class="col-4 no-gutters">
+            <div class="input-group">
+              <span id="id-label-firstName">
+                <strong class="control-label">{{
+                  t("creditCardPage.ownerFirstName.label")
+                }}</strong></span
+              >
+              <input
+                to-keyb
+                type="text"
+                formControlName="firstName"
+                class="form-control"
+                [ngClass]="getClasses('firstName')"
+                [placeholder]="t('creditCardPage.ownerFirstName.placeholder')"
+                aria-describedby="id-label-firstName"
+              />
               <and-err-input-panel
-                name="cardNumber"
+                name="firstName"
                 [f]="f"
               ></and-err-input-panel>
             </div>
-            <div class="col-3">
-              <div class="input-group">
-                <span
-                  ><strong class="control-label">{{
-                    t("creditCardPage.tokef.label")
-                  }}</strong></span
-                >
-                <input
-                  class="form-control"
-                  to-keyb="dg"
-                  type="text"
-                  formControlName="tokef"
-                  [textMask]="{ mask: maskTokefNum }"
-                  id="id-credit-card-tokef"
-                  [ngClass]="getClasses('tokef')"
-                  placeholder="MM/YY"
-                />
-              </div>
-              <and-err-input-panel name="tokef" [f]="f"></and-err-input-panel>
-            </div>
-            <div class="col-3">
-              <div class="input-group">
-                <span
-                  ><strong class="control-label">{{
-                    t("creditCardPage.cvv.label")
-                  }}</strong></span
-                >
-                <input
-                  class="form-control"
-                  to-keyb="dg"
-                  type="text"
-                  formControlName="cvv"
-                  [textMask]="{ mask: maskCvvNum }"
-                  id="id-credit-card-cvv"
-                  [ngClass]="getClasses('cvv')"
-                  placeholder="XXX"
-                />
-              </div>
-              <and-err-input-panel name="cvv" [f]="f"></and-err-input-panel>
+          </div>
+          <div class="col-4">
+            <div class="input-group">
+              <span id="id-label-lastName">
+                <strong class="control-label">{{
+                  t("creditCardPage.ownerLastName.label")
+                }}</strong></span
+              >
+              <input
+                to-keyb
+                type="text"
+                formControlName="lastName"
+                class="form-control"
+                [ngClass]="getClasses('lastName')"
+                [placeholder]="t('creditCardPage.ownerLastName.placeholder')"
+                aria-describedby="id-label-lastName"
+              />
+              <and-err-input-panel
+                name="lastName"
+                [f]="f"
+              ></and-err-input-panel>
             </div>
           </div>
-
-          <button class="btn btn-outline-info medium" type="submit">
-            {{ t("creditCardPage.saveButtonText") }}
-          </button>
+          <div class="col-4">
+            <div class="input-group">
+              <span id="id-label-passport">
+                <strong class="control-label">{{
+                  t("creditCardPage.passport.label")
+                }}</strong></span
+              >
+              <input
+                to-keyb="dg"
+                type="string"
+                formControlName="passport"
+                class="form-control"
+                [ngClass]="getClasses('passport')"
+                [placeholder]="t('creditCardPage.passport.placeholder')"
+                aria-describedby="id-label-passport"
+              />
+              <and-err-input-panel
+                name="passport"
+                [f]="f"
+              ></and-err-input-panel>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group">
+              <span
+                ><strong class="control-label">{{
+                  t("creditCardPage.cardNumber.label")
+                }}</strong></span
+              >
+              <input
+                class="form-control"
+                to-keyb="dg"
+                type="text"
+                formControlName="cardNumber"
+                [textMask]="{ mask: maskCardNum }"
+                id="id-credit-card-card-number"
+                [ngClass]="getClasses('cardNumber')"
+                placeholder="XXXX-XXXX-XXXX-XXXX"
+              />
+            </div>
+
+            <and-err-input-panel
+              name="cardNumber"
+              [f]="f"
+            ></and-err-input-panel>
+          </div>
+          <div class="col-3">
+            <div class="input-group">
+              <span
+                ><strong class="control-label">{{
+                  t("creditCardPage.tokef.label")
+                }}</strong></span
+              >
+              <input
+                class="form-control"
+                to-keyb="dg"
+                type="text"
+                formControlName="tokef"
+                [textMask]="{ mask: maskTokefNum }"
+                id="id-credit-card-tokef"
+                [ngClass]="getClasses('tokef')"
+                placeholder="MM/YY"
+              />
+            </div>
+            <and-err-input-panel name="tokef" [f]="f"></and-err-input-panel>
+          </div>
+          <div class="col-3">
+            <div class="input-group">
+              <span
+                ><strong class="control-label">{{
+                  t("creditCardPage.cvv.label")
+                }}</strong></span
+              >
+              <input
+                class="form-control"
+                to-keyb="dg"
+                type="text"
+                formControlName="cvv"
+                [textMask]="{ mask: maskCvvNum }"
+                id="id-credit-card-cvv"
+                [ngClass]="getClasses('cvv')"
+                placeholder="XXX"
+              />
+            </div>
+            <and-err-input-panel name="cvv" [f]="f"></and-err-input-panel>
+          </div>
+        </div>
+        <div class="row"></div>
+
+        <button class="btn btn-outline-info medium bottom-btn" type="submit">
+          {{ t("creditCardPage.saveButtonText") }}
+        </button>
+      </div>
+    </form>
   </app-page-wrapper>
 </ng-container>

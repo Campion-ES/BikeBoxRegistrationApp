@@ -75,6 +75,10 @@ button {
       color: white;
       background-color: #169dd9;
     }
+
+    &.bottom-btn {
+      margin-top: auto;
+    }
   }
 }
 
@@ -86,7 +90,7 @@ button {
 }
 
 h4 {
-  font: 2.83em Rubik;
+  font: 2.5em Rubik;
 }
 
 h6 {
@@ -112,8 +116,9 @@ label {
   flex-direction: column;
   background-color: white;
   border-radius: 30px;
-  padding: 2em;
+  padding: 1.5em 2em;
   margin: 0px 4.92em;
+  height: 24.3em;
 }
 
 .input-group-text {
