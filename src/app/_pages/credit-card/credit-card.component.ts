@@ -1,13 +1,8 @@
-///yarn add @myndmanagement/text-mask
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UsersAccountService, AlertService } from '@app/_services';
-import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { GKeybLanGlobal as G } from '@app/_globals';
-
-// import { luhnValidator } from 'src/app/_helpers/luhn/luhn.validator';
 import { LangValidator } from '@app/_helpers/lang.validators';
-import { CreditCardModel, IUserModel } from '@app/_models';
 import {
   MASK_CARD_NUM,
   MASK_CVV_NUM,
@@ -18,8 +13,10 @@ import { FlowType } from '@app/_models/flow-type.enum';
 import { HeaderSize } from '@app/_models/header-size.enum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-
-const TO_LOG = true;
+import { RegisterService } from '@app/_services/register.service';
+import { PaymentMethodDetails } from '@app/_models/payment-method-details.model';
+import { BikeboxResponse, ResponseCode } from '@app/_models/response.model';
+import { VerificationData } from '@app/_models/verification.model';
 
 @UntilDestroy()
 @Component({
@@ -27,43 +24,39 @@ const TO_LOG = true;
   templateUrl: './credit-card.component.html',
   styleUrls: ['./credit-card.component.scss'],
 })
-export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
-  title = 'CreditCardValidation';
+export class CreditCardComponent implements OnInit, OnDestroy {
+  private readonly registerService = inject(RegisterService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
-  //#endregion
-  active: string = '';
   paymentForm!: FormGroup;
-  private user!: IUserModel; // = this.userSvc.userValue;
+  model: { month: string; year: string } = <{ month: string; year: string }>{};
+  apiStatusCode = '';
 
-  model: CreditCardModel = <CreditCardModel>{};
-
-  isSubmitted: boolean = false;
-  cardValidate: boolean = false;
-  cardDetailsValidate: boolean = false;
-  cardType: string = 'Visa';
-  //#region MASKS
   readonly maskCardNum = MASK_CARD_NUM;
   readonly maskPassportNum = MASK_PASSPORT_NUM;
   readonly maskTokefNum = MASK_TOKEF_NUM;
   readonly maskCvvNum = MASK_CVV_NUM;
-  //#endregion
-  subs: Subscription[] = [];
 
   flowType = FlowType.register;
   headerSize = HeaderSize.small;
-
-  public constructor(
-    private userSvc: UsersAccountService,
-    private alertSvc: AlertService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
 
   async ngOnInit() {
     this.getFlowType();
     G.setVisibleKeybToggle(true);
     G.KeyboardVisible = true;
-    this.IntializePaymentForm();
+    this.registerService.verificationData$
+      .pipe(
+        filter((data) => {
+          return data !== undefined;
+        }),
+        map((data: VerificationData | undefined) => {
+          return data!;
+        })
+      )
+      .subscribe((data: VerificationData) => {
+        this.IntializePaymentForm(data);
+      });
   }
 
   getFlowType() {
@@ -72,26 +65,7 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((data) => (this.flowType = data['flowType']));
   }
 
-  private _validateMe() {
-    if (!this.paymentForm) return;
-
-    for (let controlName in this.paymentForm?.controls) {
-      this.c(controlName)?.updateValueAndValidity();
-    }
-  }
-  ngOnDestroy(): void {
-    this.subs.forEach((sub) => sub.unsubscribe());
-    G.KeyboardVisible = false;
-  }
-
-  ngAfterViewInit(): void {}
-
-  c(controlName: string): FormControl {
-    const ctrl = this.paymentForm.controls[controlName];
-    return ctrl as FormControl;
-  }
-  //#region IntializePaymentForm
-  IntializePaymentForm() {
+  IntializePaymentForm(data: VerificationData) {
     this.paymentForm = new FormGroup({
       firstName: new FormControl<string>('', [
         LangValidator.required('firstName'),
@@ -99,13 +73,6 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
       lastName: new FormControl<string>('', [
         LangValidator.required('lastName'),
-      ]),
-
-      passport: new FormControl<string>('', [
-        LangValidator.required('passport'),
-        //LangValidator.minLength("passport",9),
-        LangValidator.teudatZehut('passport'),
-        //
       ]),
 
       cardNumber: new FormControl<string>('', [
@@ -119,9 +86,8 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
       ]),
 
       cvv: new FormControl<string>('XXX', [LangValidator.required('cvv')]),
+      user_id: new FormControl<string>(data.userId),
     });
-
-    this.paymentForm.patchValue(this.user);
   }
   get f() {
     return this.paymentForm.controls;
@@ -132,7 +98,6 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
     const c = {
       'is-invalid': !!fc?.touched && !fc?.valid,
       'is-valid': !!fc?.valid,
-      // 'is-active': cname === this.active
     };
     return c;
   }
@@ -145,15 +110,15 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   //#endregion
 
-  tokef2date(): boolean {
-    if (this.model.tokef && this.model.tokef.includes('/')) {
-      const arr = this.model.tokef.split('/');
+  tokef2date(formData: any): boolean {
+    if (formData.tokef && formData.tokef.includes('/')) {
+      const arr = formData.tokef.split('/');
       if (arr.length >= 2) {
         let m = +arr[0].toString();
         m = m >= 1 && m <= 12 ? m : 1;
-        this.model.cardMonth = m.toString();
+        this.model.month = m.toString();
         let y = +arr[1].toString() % 100;
-        this.model.cardYear = (y + 2000).toString();
+        this.model.year = (y + 2000).toString();
         return true;
       }
     }
@@ -161,52 +126,35 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async saveCardDetails() {
-    this.router.navigate([`${this.flowType}/success`]);
-    // const hash = this.paymentForm.value;
-    // this.model = { ...hash };
+    this.apiStatusCode = '';
+    const { value, valid } = this.paymentForm;
 
-    // //debugger;
+    if (!valid) {
+      return;
+    }
 
-    // Object.entries(hash).forEach((entry) => {
-    //   const [key, value] = entry;
-    //   console.log(key, value);
-    // });
-    // const tokef = this.model['tokef'];
-    // this.isSubmitted = true;
-    // const ft = this.tokef2date();
-    // let user = this.user;
+    if (this.tokef2date(value)) {
+      const paymentMethodDetails: PaymentMethodDetails = {
+        fields: {
+          card_holder: `${value.firstName} ${value.lastName}`,
+          card_number: value.cardNumber,
+          month: this.model.month,
+          year: this.model.year,
+          cv: value.cvv,
+        },
+        user_id: value.user_id,
+      };
 
-    // if (ft && this.paymentForm.valid) {
-    //   this.cardType = 'Visa'; //this.getCardType(this.paymentmodel.cardNumber)
-    //   this.cardValidate = this.validateCCcard(
-    //     +(this.model.cardMonth ?? '0'),
-    //     +(this.model?.cardYear ?? '0')
-    //   );
-    //   if (this.cardValidate) this.cardDetailsValidate = true;
-
-    //   this.user.tokef = tokef;
-    //   try {
-    //     await this.userSvc.saveUser$(this.user, true);
-
-    //     this.alertSvc.success(`Your egistration succeded tokef=${tokef}`, {
-    //       autoClose: true,
-    //       keepAfterRouteChange: true,
-    //     });
-    //   } catch (err) {
-    //     this.alertSvc.error('' + err);
-    //   }
-
-    //   ///!!! Here to call Card Service
-    // } else {
-    //   this.cardDetailsValidate = false;
-    // }
-
-    // console.log(this.model, this.cardType, this.cardValidate);
-  }
-
-  ClearCardDetails() {
-    this.model = <CreditCardModel>{};
-    this.paymentForm.reset();
+      this.registerService
+        .savePaymentMethod(paymentMethodDetails)
+        .subscribe((res: BikeboxResponse) => {
+          if (res.code === ResponseCode.SuccessUpdatePaymentMethod) {
+            this.router.navigate([`${this.flowType}/success`]);
+          } else {
+            this.apiStatusCode = res.code.toString();
+          }
+        });
+    }
   }
 
   validateCCcard(month: number, year: number) {
@@ -234,59 +182,8 @@ export class CreditCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     return false;
   }
+
+  ngOnDestroy(): void {
+    G.KeyboardVisible = false;
+  }
 }
-
-// export interface IMonth {
-//   text: string,
-//   value: string,
-// }
-
-// export interface IYear {
-//   text: string,
-//   value: string,
-// }
-// export interface IMonth {
-//   text: string,
-//   value: string,
-// }
-
-// export interface IYear {
-//   text: string,
-//   value: string,
-// }
-//#region Set MonthLsit Yeras
-//   GetMonths() {
-//     for (let i = 1; i <= 12; i++) {
-//       this.month = <IMonth>{};
-//       if(i.toString().length == 1)
-//       {
-//         this.month.text = "0"+i.toString();
-//         this.month.value = "0"+i.toString();
-//       }
-//       else
-//       {
-//         this.month.text = i.toString();
-//         this.month.value = i.toString();
-//       }
-
-//       this.monthlist.push(this.month);
-//     }
-//   }
-//   GetYears() {
-//     let year = new Date().getFullYear();
-//     for (let i = year; i <= year + 10; i++) {
-//       this.year = <IYear>{};
-//       this.year.text = i.toString();
-//       this.year.value = i.toString();
-//       this.years.push(this.year);
-//     }
-//   }
-// //#endregion
-//#region Card Mask fns
-// cardMaskFunction(rawValue: string): Array<RegExp> {
-//   const card = null;//getValidationConfigFromCardNo(rawValue);
-//   if (card) {
-//     return card.mask;
-//   }
-//   return [/\d/];
-// }

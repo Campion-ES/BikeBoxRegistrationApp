@@ -8,6 +8,7 @@ import { TranslocoRootModule } from '@app/transloco-root.module';
 import { TextMaskModule } from '@myndmanagement/text-mask';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import { RouterModule, Routes } from '@angular/router';
+import { ApiErrorMessageComponent } from '@app/_components/api-error-message/api-error-message.component';
 
 const routes: Routes = [{ path: '', component: VerifyIdPageComponent }];
 
@@ -21,6 +22,7 @@ const routes: Routes = [{ path: '', component: VerifyIdPageComponent }];
     TranslocoRootModule,
     ReactiveFormsModule,
     ToKeybModule,
+    ApiErrorMessageComponent,
   ],
   providers: [
     { provide: TRANSLOCO_SCOPE, useValue: 'verify-id-page', multi: true },

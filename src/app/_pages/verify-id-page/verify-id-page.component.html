@@ -14,18 +14,19 @@
         <form form2keyb [formGroup]="form" (ngSubmit)="verifyId()">
           <div class="content">
             <input
-              class="oval-input big"
+              autocomplete="off"
               to-keyb="dg"
-              type="string"
-              formControlName="passport"
-              [ngClass]="getClasses('passport')"
-              [textMask]="{ mask: maskPassportNum }"
+              formControlName="phone"
+              class="form-control"
+              [ngClass]="getClasses('phone')"
+              aria-describedby="id-label-phone"
               placeholder="000000000"
             />
-            <and-err-input-panel name="passport" [f]="f"></and-err-input-panel>
+            <and-err-input-panel name="phone" [f]="f"></and-err-input-panel>
             <button class="btn btn-outline-info big bottom-btn" type="submit">
               {{ t("verifyIdPage.continueButton") }}
             </button>
+            <app-api-error-message [statusCode]="apiStatusCode"></app-api-error-message>
           </div>
         </form>
       </div>

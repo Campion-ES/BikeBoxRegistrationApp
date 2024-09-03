@@ -18,6 +18,8 @@ import { HomePageComponent } from './_pages/home-page/home-page.component';
 import { LangSwitcherComponent } from './_components/lang-switcher/lang-switcher.component';
 import { KeyboardToggleComponent } from './_components/keyboard-toggle/keyboard-toggle.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { ApiErrorMessageComponent } from './_components/api-error-message/api-error-message.component';
+import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -37,15 +39,11 @@ import { TranslocoRootModule } from './transloco-root.module';
     ToKeybModule,
     TextMaskModule,
     TranslocoRootModule,
-
-    // AccountModule,
-    // UsersModule,
   ],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
     // provider used to create fake backend
     FakeBackendProvider,
   ],

@@ -29,6 +29,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="firstName"
@@ -51,6 +52,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="lastName"
@@ -73,6 +75,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb="dg"
                 type="string"
                 formControlName="passport"
@@ -95,6 +98,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb="dg"
                 type="number"
                 formControlName="phone"
@@ -116,6 +120,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb="en"
                 type="email"
                 formControlName="email"
@@ -135,6 +140,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="address"
@@ -152,6 +158,7 @@
                 <strong>{{ flds.ravkav.label }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="ravkav"
@@ -179,6 +186,7 @@
               <div class="checkbox-wrapper">
                 <label class="switch-checkbox">
                   <input
+                    autocomplete="off"
                     type="checkbox"
                     name="imagreePolicy"
                     formControlName="imagreePolicy"
@@ -203,6 +211,7 @@
               <div class="checkbox-wrapper">
                 <label class="switch-checkbox">
                   <input
+                    autocomplete="off"
                     type="checkbox"
                     name="imagreeTerms"
                     formControlName="imagreeTerms"
@@ -238,7 +247,7 @@
                       Avi Kohen
                   </button>
               </ng-container>
-  
+
               <ng-container *ngIf="env.toTestUsers">
                   <button class="btn btn-primary" type="button" (click)="getRandomUser()">
                       Avi Kohen

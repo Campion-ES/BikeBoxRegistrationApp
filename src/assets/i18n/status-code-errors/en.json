@@ -1,0 +1,13 @@
+{
+  "40": "Wrong phone format.",
+  "45": "This phone does not exist in the system.",
+  "50": "Invalid phone number.",
+  "400": "Invalid verification code, please try again.",
+  "3000": "Wrong phone format.",
+  "4000": "Email exist!",
+  "5000": "ID number exist!",
+  "6000": "Wrong ravkav format.",
+  "30000": "The credit card details are incorrect.",
+  "30003": "Security code is not valid!",
+  "100000": "Please complete all required fields accurately."
+}

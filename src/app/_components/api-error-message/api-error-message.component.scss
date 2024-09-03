@@ -1,0 +1,10 @@
+.alert-warpper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  .alert {
+    position: fixed;
+    padding: 5px;
+    margin-top: 5px;
+  }
+}

@@ -26,6 +26,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="firstName"
@@ -48,6 +49,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 to-keyb
                 type="text"
                 formControlName="lastName"
@@ -58,28 +60,6 @@
               />
               <and-err-input-panel
                 name="lastName"
-                [f]="f"
-              ></and-err-input-panel>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="input-group">
-              <span id="id-label-passport">
-                <strong class="control-label">{{
-                  t("creditCardPage.passport.label")
-                }}</strong></span
-              >
-              <input
-                to-keyb="dg"
-                type="string"
-                formControlName="passport"
-                class="form-control"
-                [ngClass]="getClasses('passport')"
-                [placeholder]="t('creditCardPage.passport.placeholder')"
-                aria-describedby="id-label-passport"
-              />
-              <and-err-input-panel
-                name="passport"
                 [f]="f"
               ></and-err-input-panel>
             </div>
@@ -118,6 +98,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 class="form-control"
                 to-keyb="dg"
                 type="text"
@@ -138,6 +119,7 @@
                 }}</strong></span
               >
               <input
+                autocomplete="off"
                 class="form-control"
                 to-keyb="dg"
                 type="text"
@@ -156,6 +138,7 @@
         <button class="btn btn-outline-info medium bottom-btn" type="submit">
           {{ t("creditCardPage.saveButtonText") }}
         </button>
+        <app-api-error-message [statusCode]="apiStatusCode"></app-api-error-message>
       </div>
     </form>
   </app-page-wrapper>

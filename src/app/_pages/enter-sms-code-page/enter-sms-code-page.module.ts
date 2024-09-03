@@ -8,6 +8,7 @@ import { TextMaskModule } from '@myndmanagement/text-mask';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import { RouterModule, Routes } from '@angular/router';
 import { EnterSmsCodeComponent } from './enter-sms-code-page.component';
+import { ApiErrorMessageComponent } from '@app/_components/api-error-message/api-error-message.component';
 
 const routes: Routes = [{ path: '', component: EnterSmsCodeComponent }];
 
@@ -21,6 +22,7 @@ const routes: Routes = [{ path: '', component: EnterSmsCodeComponent }];
     TranslocoRootModule,
     ReactiveFormsModule,
     ToKeybModule,
+    ApiErrorMessageComponent,
   ],
   providers: [
     { provide: TRANSLOCO_SCOPE, useValue: 'sms-code-page', multi: true },

@@ -1,0 +1,7 @@
+<ng-container *transloco="let t">
+  <div class="alert-warpper">
+    <div class="alert alert-danger" *ngIf="statusCode">
+      {{ t("statusCodeErrors." + statusCode) }}
+    </div>
+  </div>
+</ng-container>

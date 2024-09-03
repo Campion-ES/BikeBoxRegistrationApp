@@ -11,21 +11,23 @@
         </div>
       </div>
       <div class="row content-wrapper">
-        <form form2keyb [formGroup]="form" (ngSubmit)="verifySms()">
+        <form form2keyb [formGroup]="form" (ngSubmit)="verifyBySms()">
           <div class="content">
             <input
+              autocomplete="off"
               class="oval-input big"
               to-keyb="dg"
               type="text"
-              [ngClass]="getClasses('smsVerificationCode')"
-              formControlName="smsVerificationCode"
+              [ngClass]="getClasses('pass')"
+              formControlName="pass"
               [textMask]="{ mask: maskSmsCode }"
               placeholder="000000"
             />
-            <and-err-input-panel name="smsVerificationCode" [f]="f"></and-err-input-panel>
+            <and-err-input-panel name="pass" [f]="f"></and-err-input-panel>
             <button class="btn btn-outline-info big bottom-btn" type="submit">
               {{ t("smsCodePage.continueButton") }}
             </button>
+            <app-api-error-message [statusCode]="apiStatusCode"></app-api-error-message>
           </div>
         </form>
       </div>

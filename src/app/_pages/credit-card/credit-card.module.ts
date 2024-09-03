@@ -8,6 +8,7 @@ import { PageWrapperComponent } from '@app/_components/page-wrapper/page-wrapper
 import { TranslocoRootModule } from '@app/transloco-root.module';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import { RouterModule, Routes } from '@angular/router';
+import { ApiErrorMessageComponent } from '@app/_components/api-error-message/api-error-message.component';
 
 const routes: Routes = [{ path: '', component: CreditCardComponent }];
 
@@ -20,6 +21,7 @@ const routes: Routes = [{ path: '', component: CreditCardComponent }];
     ToKeybModule,
     PageWrapperComponent,
     TranslocoRootModule,
+    ApiErrorMessageComponent,
   ],
   declarations: [CreditCardComponent],
   providers: [
