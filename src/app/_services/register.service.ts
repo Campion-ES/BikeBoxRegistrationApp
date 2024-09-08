@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class RegisterService {
-  readonly baseUrl = 'https://bikebox.co.il/crm/api';
+  readonly baseUrl = 'http://localhost:3000/api';
  readonly verificationData$ = new BehaviorSubject<VerificationData | undefined>(undefined);
 
  set verificationData(value:VerificationData | undefined){
