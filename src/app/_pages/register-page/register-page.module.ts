@@ -9,6 +9,8 @@ import { TranslocoRootModule } from '@app/transloco-root.module';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import { RouterModule, Routes } from '@angular/router';
 import { ApiErrorMessageComponent } from '@app/_components/api-error-message/api-error-message.component';
+import { PrivacyPolicyModalComponent } from '@app/_components/privacy-policy-modal/privacy-policy-modal.component';
+import { TermsAndConditionsModalComponent } from '@app/_components/terms-and-conditions-modal/terms-and-conditions-modal.component';
 
 const routes: Routes = [{ path: '', component: RegisterPageComponent }];
 
@@ -22,6 +24,8 @@ const routes: Routes = [{ path: '', component: RegisterPageComponent }];
     PageWrapperComponent,
     TranslocoRootModule,
     ApiErrorMessageComponent,
+    PrivacyPolicyModalComponent,
+    TermsAndConditionsModalComponent,
   ],
   declarations: [RegisterPageComponent],
   providers: [

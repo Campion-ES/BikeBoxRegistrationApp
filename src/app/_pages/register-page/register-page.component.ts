@@ -113,6 +113,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       return;
     }
 
+    value.name = `${value.firstName} ${value.lastName}`;
     this.registerService
       .registration(value)
       .pipe(take(1))

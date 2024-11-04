@@ -170,12 +170,12 @@
 
         <div class="terms-and-condition">
           <!--------IAMAGREE POLICY---------->
-          <div class="terms right-terms">
+          <div class="terms right-terms" #terms>
             <div style="display: flex; flex-direction: column">
               <div class="terms-toggle">
                 <label class="toggle-label"
                   >{{ t("registerPage.iamagree.label") }}
-                  <a class="link" href="http://google.com" target="_blank">
+                  <a class="link" (click)="privacyPolicy.open()">
                     {{ t("registerPage.pay.policy.text") }}
                   </a>
                 </label>
@@ -203,7 +203,7 @@
               <div class="terms-toggle">
                 <label class="toggle-label"
                   >{{ t("registerPage.iamagree.label") }}
-                  <a class="link" href="http://google.com" target="_blank">
+                  <a class="link" (click)="termsAndConditions.open()">
                     {{ t("registerPage.pay.terms.text") }}
                   </a>
                 </label>
@@ -228,8 +228,19 @@
         <button class="btn btn-outline-info medium bottom-btn" type="submit">
           {{ t("registerPage.continueButton") }}
         </button>
-        <app-api-error-message [statusCode]="apiStatusCode"></app-api-error-message>
+        <app-api-error-message
+          [statusCode]="apiStatusCode"
+        ></app-api-error-message>
       </div>
     </form>
   </app-page-wrapper>
 </ng-container>
+
+<privacy-policy-modal
+  #privacyPolicy
+  (onClose)="OnSliderChange({ target: { checked: true } }, 'imagreePolicy')"
+></privacy-policy-modal>
+<terms-and-conditions-modal
+  #termsAndConditions
+  (onClose)="OnSliderChange({ target: { checked: true } }, 'imagreeTerms')"
+></terms-and-conditions-modal>
