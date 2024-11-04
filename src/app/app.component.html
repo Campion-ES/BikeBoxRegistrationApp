@@ -1,37 +1,6 @@
-﻿<!-- nav -->
-<!-- <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="true || user">
-    <div class="navbar-nav">
-        <button class="btn nav-item nav-link">ver{{env.version}}</button>
-        <button class="btn nav-item nav-link" (click)="setLang('en')">English</button>
-        <button class="btn nav-item nav-link" (click)="setLang('he')">עברית</button>
-        <ng-container *ngIf="env.isRussian">
-            <button class="btn nav-item nav-link" (click)="setLang('ru')">Русский</button>
-        </ng-container>
-        <button class="btn nav-item nav-link" (click)="setLang('ar')">عربي</button>
-        <button class="btn nav-item nav-link">{{ref.lang}}</button>
-
-        <button class="btn btn-sm btn-primary me-1"  *ngIf="!IsKeyb" (click)="toShowKeyb()">show keyb</button>
-        <button class="btn btn-sm btn-primary me-1"  *ngIf="IsKeyb" (click)="toHideKeyb()">hide keyb</button>
-        <ng-container  *ngIf="user">
-            <button class="btn btn-link nav-item nav-link" (click)="gotoExit$()">Exit </button>
-        </ng-container>
-    </div>
-</nav> -->
-
-<!-- main app container -->
-<div class="app-container">
+﻿<div class="app-container">
   <alert></alert>
   <router-outlet></router-outlet>
   <actions-panel></actions-panel>
   <keyboard></keyboard>
 </div>
-
-<!-- credits -->
-<!-- <div class="text-center mt-4">
-    <p>
-        <a href="https://jasonwatmore.com/post/2022/11/29/angular-14-user-registration-and-login-example-tutorial" target="_top">Angular 14 - UserModel Registration and Login Example & Tutorial</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
-</div> -->

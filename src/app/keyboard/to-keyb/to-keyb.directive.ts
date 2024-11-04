@@ -52,10 +52,6 @@ export class ToKeybDirective implements OnInit , OnDestroy{
       if(!this.id || this.id.length < 1){
         this.id = `id-input-to-keyb-${this.name}`;
       }
-      if(TO_LOG_INIT){
-        console.log(`to-keyb::Init('${this.name}') id:${this.id}`)
-      }
-
     }
    }
 
@@ -82,10 +78,6 @@ export class ToKeybDirective implements OnInit , OnDestroy{
       if(this.alterLang.length > 1){
         G.setAlterLang(this.alterLang as TLangNames2);
       }
-      if(TO_LOG_ATTACH){
-        console.log(`@attach: ${this.name} value:"${this.f.value}"` );
-      }
-
     }
 
 
@@ -99,9 +91,6 @@ export class ToKeybDirective implements OnInit , OnDestroy{
         }
          that.hostElt.nativeElement.classList.remove('attached-to-keyb');
         this.hostElt.nativeElement.removeAttribute("attached");
-        if(TO_LOG_DETACH){
-          console.log(`@detach: ${that.id} value:"${that.f.value}"` );
-        }
       }
 
     }

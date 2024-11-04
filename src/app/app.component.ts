@@ -1,18 +1,23 @@
-﻿import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UsersAccountService, GPage } from './_services';
+﻿import { Component, inject, OnInit } from '@angular/core';
+import { GPage } from './_services';
 import { IUserModel } from './_models';
 import { GKeybLanGlobal as G } from '@app/_globals/keyb-lang.global';
 import { TLangNames } from './_interfaces/interfaces';
-import { Subscription } from 'rxjs';
 import { epg } from '@app/_interfaces/interfaces';
 import { environment } from '@environments/environment';
+import { UserIdleService } from 'angular-user-idle';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Router } from '@angular/router';
 
+@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
+  private readonly router = inject(Router);
+  private readonly userIdle = inject(UserIdleService);
   env = environment;
   epg = epg;
   // get user() {return GUser};
@@ -22,12 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   ref = G.ref;
 
-  readonly subs: Subscription[] = [];
-
-  constructor(private userSvc: UsersAccountService) {
-    this.subs.push(this.userSvc.user$.subscribe((x) => (this.user = x)));
-  }
-
   public get IsKeyb(): boolean {
     return G.KeyboardVisible;
   }
@@ -35,15 +34,21 @@ export class AppComponent implements OnInit, OnDestroy {
     G.KeyboardVisible = v;
   }
 
-  ngOnDestroy(): void {
-    this.subs.forEach((u) => u.unsubscribe());
-  }
   ngOnInit() {
     this.IsKeyb = false;
-  }
 
-  async gotoExit$() {
-    await this.userSvc.gotoExit$();
+    this.userIdle.startWatching();
+    this.userIdle
+      .onTimerStart()
+      .pipe(untilDestroyed(this))
+      .subscribe((count) => console.log(count));
+    this.userIdle
+      .onTimeout()
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.router.navigate(['/wellcome']);
+        this.userIdle.resetTimer();
+      });
   }
 
   toShowKeyb() {

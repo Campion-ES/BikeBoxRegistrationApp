@@ -72,8 +72,6 @@ function teudatZehutValidator(id: string) {
     sum += incNum > 9 ? incNum - 9 : incNum; // Sum the digits up and add to total
   }
   const s = sum % 10;
-  console.log('@@@', id, s);
-
   return s === 0;
 }
 

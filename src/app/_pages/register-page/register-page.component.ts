@@ -77,7 +77,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
     if (c.value != checked) {
       c.setValue(checked);
     }
-    console.log(`OnSliderChange:(${ctrlName})=${c.value}`);
   }
 
   private _validateMe() {

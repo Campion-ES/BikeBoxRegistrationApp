@@ -128,7 +128,6 @@ export class CKeybLanGlobal implements IKeybLanGlobal {
       this._isAlterLang = true;
       this._KeybLang$.next(alterLang);
       this.ref.keybLang = this.Lang;
-      console.log(` setAlterLang(${alterLang} )`);
     }
   }
 
@@ -137,7 +136,6 @@ export class CKeybLanGlobal implements IKeybLanGlobal {
       this._isAlterLang = false;
       this.ref.keybLang = this.Lang;
       this._KeybLang$.next(this.Lang);
-      console.log(` clearAlterLang( ) Lang=${this.Lang}`);
     }
   }
 

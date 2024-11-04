@@ -50,7 +50,6 @@ import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
           </button>
         </div>
       </ng-template>
-      <hr />
     </ng-container>
   `,
   styles: [

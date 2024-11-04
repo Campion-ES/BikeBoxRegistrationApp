@@ -114,10 +114,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
       //  ravkav: new FormControl('',[]),
       imagreeTerms: new FormControl<boolean>(false, [
-        LangValidator.requiredTrue('imagreeTerms', this.flds.pay.terms.text),
+        LangValidator.requiredTrue('imagreeTerms'),
       ]),
       imagreePolicy: new FormControl<boolean>(false, [
-        LangValidator.requiredTrue('imagreePolicy', this.flds.pay.policy.text),
+        LangValidator.requiredTrue('imagreePolicy'),
       ]),
     });
   }
@@ -147,8 +147,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (c.value != checked) {
       c.setValue(checked);
     }
-    console.log(`OnSliderChange:(${ctrlName})=${c.value}`);
-    //console.log(c.name,c.touched);
   }
 
   private _onLangChange(v: TLangNames) {
@@ -157,7 +155,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     /// To event !!!
     // this._Lang = v;
     this.flds = USER_DATA_MULTI[this._Lang] as IUserDetailsFieldsData; //{...USER_DATA_MULTI[this._Lang]};
-    console.log(`Set Lang ${v}:${ILANG_DESCR[v].name}`);
     this._validateMe();
   }
   private _validateMe() {
