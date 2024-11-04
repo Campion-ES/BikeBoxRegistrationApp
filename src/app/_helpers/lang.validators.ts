@@ -247,7 +247,10 @@ export class LangValidator {
         return null;
       }
 
-      const tokef: string = control.value?.toString() ?? '';
+      let tokef: string = control.value?.toString() ?? '';
+      if (!tokef.includes('/')) {
+        tokef = LangValidator.formatTokef(tokef);
+      }
 
       let arr: string[] = [];
 
@@ -266,6 +269,10 @@ export class LangValidator {
       }
 
       let year = +arr[1].toString() % 100;
+      if (isNaN(year)) {
+        return LangValidator._addMsgLang(`${controlName}DateFormat`);
+      }
+
       year = year + 2000;
       const dateNow = new Date();
       const dateTokef = new Date(year, month - 1, 1, 23, 59, 59);
@@ -275,5 +282,20 @@ export class LangValidator {
 
       return null;
     };
+  }
+
+  static formatTokef(input: string): string {
+    // Ensure the input is a valid number string
+    input = input.replaceAll('/', '').replaceAll('_' ,'');
+    const pattern = ['_', '_', '/', '_', '_'];
+    for (let index = 0; index < input.length; index++) {
+      const element = input[index];
+      if (index < 2) {
+        pattern[index] = element;
+      }else{
+        pattern[index + 1] = element;
+      }
+    }
+    return pattern.join('');
   }
 }

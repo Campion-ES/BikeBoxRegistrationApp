@@ -1,7 +1,7 @@
 ﻿<!-- nav -->
 <!-- <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="true || user">
-    <div class="navbar-nav"> 
-        <button class="btn nav-item nav-link">ver{{env.version}}</button>  
+    <div class="navbar-nav">
+        <button class="btn nav-item nav-link">ver{{env.version}}</button>
         <button class="btn nav-item nav-link" (click)="setLang('en')">English</button>
         <button class="btn nav-item nav-link" (click)="setLang('he')">עברית</button>
         <ng-container *ngIf="env.isRussian">
@@ -9,9 +9,9 @@
         </ng-container>
         <button class="btn nav-item nav-link" (click)="setLang('ar')">عربي</button>
         <button class="btn nav-item nav-link">{{ref.lang}}</button>
-       
-        <button class="btn btn-sm btn-primary me-1"  *ngIf="!IsKeyb" (click)="toShowKeyb()">show keyb</button>   
-        <button class="btn btn-sm btn-primary me-1"  *ngIf="IsKeyb" (click)="toHideKeyb()">hide keyb</button>   
+
+        <button class="btn btn-sm btn-primary me-1"  *ngIf="!IsKeyb" (click)="toShowKeyb()">show keyb</button>
+        <button class="btn btn-sm btn-primary me-1"  *ngIf="IsKeyb" (click)="toHideKeyb()">hide keyb</button>
         <ng-container  *ngIf="user">
             <button class="btn btn-link nav-item nav-link" (click)="gotoExit$()">Exit </button>
         </ng-container>
@@ -22,9 +22,8 @@
 <div class="app-container">
   <alert></alert>
   <router-outlet></router-outlet>
-  <and-keyboard-multi></and-keyboard-multi>
-  <app-lang-switcher></app-lang-switcher>
-  <app-keyboard-toggle *ngIf="visibleKeybToggle | async"></app-keyboard-toggle>
+  <actions-panel></actions-panel>
+  <keyboard></keyboard>
 </div>
 
 <!-- credits -->

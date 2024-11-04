@@ -45,18 +45,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.getFlowType();
     G.setVisibleKeybToggle(true);
     G.KeyboardVisible = true;
-    this.registerService.verificationData$
-      .pipe(
-        filter((data) => {
-          return data !== undefined;
-        }),
-        map((data: VerificationData | undefined) => {
-          return data!;
-        })
-      )
-      .subscribe((data: VerificationData) => {
-        this.IntializePaymentForm(data);
-      });
+    this.IntializePaymentForm({ userId: '111', phone: '222' });
   }
 
   getFlowType() {
@@ -110,18 +99,26 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   //#endregion
 
-  tokef2date(formData: any): boolean {
-    if (formData.tokef && formData.tokef.includes('/')) {
-      const arr = formData.tokef.split('/');
-      if (arr.length >= 2) {
-        let m = +arr[0].toString();
-        m = m >= 1 && m <= 12 ? m : 1;
-        this.model.month = m.toString();
-        let y = +arr[1].toString() % 100;
-        this.model.year = (y + 2000).toString();
-        return true;
-      }
+  tokef2date(): boolean {
+    const tokefControl = this.paymentForm.get('tokef');
+    const tokef = tokefControl?.value;
+    if (!tokef || !tokefControl?.valid) {
+      return false;
     }
+
+    const arr = tokef.includes('/')
+      ? tokef.split('/')
+      : [tokef.slice(0, 2), tokef.slice(2)];
+
+    if (arr.length >= 2) {
+      let m = +arr[0].toString();
+      m = m >= 1 && m <= 12 ? m : 1;
+      this.model.month = m.toString();
+      let y = +arr[1].toString() % 100;
+      this.model.year = (y + 2000).toString();
+      return true;
+    }
+
     return false;
   }
 
@@ -133,7 +130,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.tokef2date(value)) {
+    if (this.tokef2date()) {
       const paymentMethodDetails: PaymentMethodDetails = {
         fields: {
           card_holder: `${value.firstName} ${value.lastName}`,

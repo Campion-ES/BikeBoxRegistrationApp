@@ -1,10 +1,10 @@
-import { Directive, 
-        ElementRef, 
-        HostBinding, 
-        HostListener, 
-        Input, 
-        OnDestroy, 
-        OnInit, 
+import { Directive,
+        ElementRef,
+        HostBinding,
+        HostListener,
+        Input,
+        OnDestroy,
+        OnInit,
         Renderer2 } from '@angular/core';
 //import {  TLangNames } from '../interfaces';
 import { FormControl, FormControlName, NgControl } from '@angular/forms';
@@ -24,7 +24,7 @@ export class ToKeybDirective implements OnInit , OnDestroy{
   private static _Atttached?: ToKeybDirective;
   public static get Attached() {return ToKeybDirective._Atttached;}
 
-  @Input ( 'to-keyb') alterLang:string  = '';//alternative keyboard if exosts
+  @Input ('to-keyb') alterLang:string  = '';//alternative keyboard if exosts
   @HostBinding() name!: string;
   @HostBinding()  id!:string;
   public f!:FormControl;
@@ -35,9 +35,9 @@ export class ToKeybDirective implements OnInit , OnDestroy{
     public renderer: Renderer2,
     readonly ngControl:NgControl
     ) {
-    
+
   }
-  
+
   ngOnInit(): void {
 
     if(this.ngControl instanceof FormControlName){
@@ -47,24 +47,24 @@ export class ToKeybDirective implements OnInit , OnDestroy{
 
       this.f = this.ngControl.control as FormControl;
       ///!!!
-        
- 
+
+
       if(!this.id || this.id.length < 1){
         this.id = `id-input-to-keyb-${this.name}`;
       }
       if(TO_LOG_INIT){
         console.log(`to-keyb::Init('${this.name}') id:${this.id}`)
       }
-      
-    }  
+
+    }
    }
 
    ngOnDestroy(): void {
     if(this.alterLang.length > 1){
         G.clearAlterLang();
-   
+
     }
-    
+
     this.detachKeyboard();
    }
 
@@ -78,16 +78,16 @@ export class ToKeybDirective implements OnInit , OnDestroy{
       if(TO_BLUR && environment.toBlurKey){
         this.hostElt.nativeElement.blur();
       }
- 
+
       if(this.alterLang.length > 1){
         G.setAlterLang(this.alterLang as TLangNames2);
       }
       if(TO_LOG_ATTACH){
         console.log(`@attach: ${this.name} value:"${this.f.value}"` );
       }
-    
+
     }
-  
+
 
 
     detachKeyboard() {
@@ -103,8 +103,8 @@ export class ToKeybDirective implements OnInit , OnDestroy{
           console.log(`@detach: ${that.id} value:"${that.f.value}"` );
         }
       }
- 
+
     }
- 
-  
+
+
 }

@@ -10,12 +10,14 @@
       [style.background-size]="stripBackgroundSizeStyle"
       [ngClass]="{ play: playAnimation }"
     ></div>
-    <img
-      class="logo"
-      src="assets/bikebox logo.svg"
-      [style.height]="logoHeightStyle"
-      alt="BikeBox"
-    />
+    <a routerLink="/">
+      <img
+        class="logo"
+        src="assets/bikebox logo.svg"
+        [style.height]="logoHeightStyle"
+        alt="BikeBox"
+      />
+    </a>
   </div>
   <div
     class="content"

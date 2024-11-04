@@ -8,6 +8,6 @@
     <img class="lang-icon" src="assets/lang-icon.svg" alt="lang-switcher" />
   </button>
   <ul class="dropdown-menu">
-    <li *ngFor="let lang of availableLangs;" class="dropdown-item" (click)="setLang(lang.id)">{{lang.label}}</li>
+    <li *ngFor="let lang of availableLangs;" class="dropdown-item" [ngClass]="{'active':lang.id === (activeLang$ | async)}" (click)="setLang(lang.id)">{{lang.label}}</li>
   </ul>
 </div>

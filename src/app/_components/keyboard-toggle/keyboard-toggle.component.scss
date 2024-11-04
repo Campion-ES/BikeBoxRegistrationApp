@@ -1,7 +1,12 @@
 .keyboard-toggle {
   border-radius: 50%;
+  border: none;
   background-color: #169dd9;
+  width: 30pt;
+  height: 30pt;
+  border: none;
   img {
-    height: 30pt;
+    height: 12pt;
+    transform: translateX(-2.5pt) translateY(-1pt);
   }
 }

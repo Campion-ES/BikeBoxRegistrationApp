@@ -24,7 +24,7 @@
   "passport": {
     "name": "passport",
     "label": "رقم الهويه*",
-    "placeholder": "بطاقة الهوية أو رقم جواز السفر"
+    "placeholder": "رقم الهوية"
   },
   "email": {
     "name": "email",

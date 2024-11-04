@@ -298,7 +298,7 @@ const REGISTR_HE: IUserDetailsFieldsData = {
     label: 'מספר ת.ז*',
     //required: true,//default true
     //pattern: '[0-9]{9}',
-    placeholder: 'מספר תעדת זהות או דרכון',
+    placeholder: 'מספר תעדת זהות',
     //invalidFeedback:'תמלא שדה ב 9 ספרות',
   },
 

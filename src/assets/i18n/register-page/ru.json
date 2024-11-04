@@ -25,7 +25,7 @@
   "passport": {
     "name": "passport",
     "label": "Удостоверение*",
-    "placeholder": "Удостоверение личности"
+    "placeholder": "номер удостоверения личности"
   },
   "email": {
     "name": "email",

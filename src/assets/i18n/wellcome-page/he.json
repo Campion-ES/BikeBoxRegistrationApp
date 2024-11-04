@@ -1,5 +1,6 @@
 {
-  "wellcomeMessage": "ברך הבא למערכת BIKEBOX",
+  "direction": "rtl",
+  "wellcomeMessage": "ברוך הבא למערכת BIKEBOX",
   "registerButtonText": "הרשמה",
   "updateCreditCardText": "עדכון אמצעי תשלום"
 }

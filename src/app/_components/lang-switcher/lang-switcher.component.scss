@@ -3,10 +3,24 @@
 }
 
 .lang-switcher-btn {
-  background: none;
+  border-radius: 50%;
   border: none;
-
+  background-color: #169dd9;
+  width: 30pt;
+  height: 30pt;
+  border: none;
   img {
-    width: 30pt;
+    height: 30pt;
+    transform: translateX(-9pt) translateY(-4pt);
+  }
+}
+
+.dropdown-item{
+  &.active {
+    background-color: #169dd9;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #169dd9c2;
   }
 }

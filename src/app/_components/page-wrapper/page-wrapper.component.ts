@@ -8,13 +8,14 @@ import {
 } from '@app/_models/background-images.constant';
 import { CommonModule } from '@angular/common';
 import { TranslocoRootModule } from '@app/transloco-root.module';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-page-wrapper',
   templateUrl: './page-wrapper.component.html',
   styleUrls: ['./page-wrapper.component.scss'],
   standalone: true,
-  imports: [CommonModule, TranslocoRootModule],
+  imports: [CommonModule, RouterModule, TranslocoRootModule],
 })
 export class PageWrapperComponent implements OnInit {
   @Input() flowType: FlowType = FlowType.wellcome;

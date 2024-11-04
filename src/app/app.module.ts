@@ -11,34 +11,25 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 
-import { KeyboardModule } from './keyboard/keyboard.module';
 import { TextMaskModule } from '@myndmanagement/text-mask';
 import { ToKeybModule } from './keyboard/to-keyb/to-keyb.module';
 import { HomePageComponent } from './_pages/home-page/home-page.component';
-import { LangSwitcherComponent } from './_components/lang-switcher/lang-switcher.component';
-import { KeyboardToggleComponent } from './_components/keyboard-toggle/keyboard-toggle.component';
 import { TranslocoRootModule } from './transloco-root.module';
-import { ApiErrorMessageComponent } from './_components/api-error-message/api-error-message.component';
-import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { ActionsPanelomponent } from './_components/actions-panel/actions-panel.component';
+import { KeyboardModule } from './keyboard/keyboard.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AlertComponent,
-    HomePageComponent,
-    LangSwitcherComponent,
-    KeyboardToggleComponent,
-    // SelectLanguageComponent,
-  ],
+  declarations: [AppComponent, AlertComponent, HomePageComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    KeyboardModule,
     ToKeybModule,
     TextMaskModule,
     TranslocoRootModule,
+    KeyboardModule,
+    ActionsPanelomponent,
   ],
 
   providers: [

@@ -1,5 +1,5 @@
 {
-  "title": "Enter the ID number. which you used to register in the system, after that a 6-digit code will be sent to you via SMS for the purpose of verifying the account",
+  "title": "Enter the phone number with which you registered in the system. A 6-digit code will then be sent to you via SMS for account verification.",
   "continueButton": "Continue",
   "40": "Wrong phone format.",
   "45": "This phone does not exist in the system.",

@@ -16,6 +16,9 @@
 
 .keyboard__keys {
   text-align: center;
+  &.digit-keyboard{
+    margin: 5px;
+  }
 }
 
 .keyboard__key {

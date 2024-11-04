@@ -26,11 +26,11 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: [
           { id: 'en', label: 'English' },
-          { id: 'ru', label: 'Русский' },
+          // { id: 'ru', label: 'Русский' },
           { id: 'he', label: 'עברית' },
           { id: 'ar', label: 'عربيه' },
         ],
-        defaultLang: 'en',
+        defaultLang: 'he',
         // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),

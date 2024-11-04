@@ -24,7 +24,7 @@
   "passport": {
     "name": "passport",
     "label": "מספר ת.ז*",
-    "placeholder": "מספר תעדת זהות או דרכון"
+    "placeholder": "מספר תעודת זהות"
   },
   "email": {
     "name": "email",
