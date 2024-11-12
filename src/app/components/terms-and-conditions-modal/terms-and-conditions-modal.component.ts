@@ -9,6 +9,7 @@
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslocoRootModule } from '@app/transloco-root.module';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'terms-and-conditions-modal',
@@ -44,9 +45,9 @@ import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
           <button
             type="button"
             class="btn btn-outline-secondary"
-            (click)="modal.close();"
+            (click)="modal.close()"
           >
-          {{ t('termsAndConditions.closeButton') }}
+            {{ t('termsAndConditions.closeButton') }}
           </button>
         </div>
       </ng-template>
@@ -88,6 +89,13 @@ export class TermsAndConditionsModalComponent {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+
+    asyncScheduler.schedule(() => {
+      const modalBody = document.querySelector('.modal-body');
+      if (modalBody) {
+        modalBody.scrollTop = 0;
+      }
+    }, 0);
   }
 
   private getDismissReason(reason: any): string {

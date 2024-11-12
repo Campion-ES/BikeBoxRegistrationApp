@@ -6,9 +6,14 @@
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 import { TranslocoRootModule } from '@app/transloco-root.module';
 import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'privacy-policy-modal',
@@ -44,9 +49,9 @@ import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
           <button
             type="button"
             class="btn btn-outline-secondary"
-            (click)="modal.close();"
+            (click)="modal.close()"
           >
-          {{ t('privacyPolicy.closeButton') }}
+            {{ t('privacyPolicy.closeButton') }}
           </button>
         </div>
       </ng-template>
@@ -72,22 +77,30 @@ export class PrivacyPolicyModalComponent {
   @ViewChild('content') content!: TemplateRef<any>;
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
   private modalService = inject(NgbModal);
+  modalRef: NgbModalRef | null = null;
   closeResult = '';
 
   open() {
-    this.modalService
-      .open(this.content, {
-        ariaLabelledBy: 'modal-basic-title',
-        scrollable: true,
-      })
-      .result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        }
-      );
+    this.modalRef = this.modalService.open(this.content, {
+      ariaLabelledBy: 'modal-basic-title',
+      scrollable: true,
+    });
+
+    this.modalRef.result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
+
+    asyncScheduler.schedule(() => {
+      const modalBody = document.querySelector('.modal-body');
+      if (modalBody) {
+        modalBody.scrollTop = 0;
+      }
+    }, 0);
   }
 
   private getDismissReason(reason: any): string {

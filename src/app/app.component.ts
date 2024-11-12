@@ -4,6 +4,7 @@ import { UserIdleService } from 'angular-user-idle';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { TLangNames } from './keyboard';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @UntilDestroy()
 @Component({
@@ -14,6 +15,7 @@ import { TLangNames } from './keyboard';
 export class AppComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly userIdle = inject(UserIdleService);
+  private modalService = inject(NgbModal);
   ref = Keyboard.ref;
 
   public get IsKeyb(): boolean {
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
       .onTimeout()
       .pipe(untilDestroyed(this))
       .subscribe(() => {
+        this.modalService.dismissAll();
         this.router.navigate(['/wellcome']);
         this.userIdle.resetTimer();
       });
