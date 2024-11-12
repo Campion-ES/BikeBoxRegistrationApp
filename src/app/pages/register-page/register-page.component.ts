@@ -4,7 +4,7 @@ import { Keyboard } from '@app/utils/keyb-lang.global';
 import { take } from 'rxjs';
 import { Router } from '@angular/router';
 import { FlowType, HeaderSize, BikeboxResponse } from '@app/models';
-import { RegisterService } from '@app/services/register.service';
+import { RegisterService } from '@app/services';
 import { LangValidator } from '@app/validators';
 
 const REQUIRED_FIELDS_STATUS_CODE = 100000;

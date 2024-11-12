@@ -13,7 +13,7 @@ import {
   BikeboxResponse,
   ResponseCode,
 } from '@app/models';
-import { RegisterService } from '@app/services/register.service';
+import { RegisterService } from '@app/services';
 import { LangValidator } from '@app/validators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Keyboard } from '@app/utils/keyb-lang.global';

@@ -2,7 +2,7 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FlowType, HeaderSize, BikeboxResponse, ResponseCode } from '@app/models';
-import { RegisterService } from '@app/services/register.service';
+import { RegisterService } from '@app/services';
 import { Keyboard } from '@app/utils/keyb-lang.global';
 import { LangValidator } from '@app/validators/lang.validators';
 import { UntilDestroy } from '@ngneat/until-destroy';

@@ -9,7 +9,7 @@ import {
   BikeboxResponse,
   ResponseCode,
 } from '@app/models';
-import { RegisterService } from '@app/services/register.service';
+import { RegisterService } from '@app/services';
 import { LangValidator } from '@app/validators/lang.validators';
 import { filter, map } from 'rxjs';
 import { Keyboard } from '@app/utils/keyb-lang.global';
