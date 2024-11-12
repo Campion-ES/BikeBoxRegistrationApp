@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UpdatePaymentMethodFlowComponent } from './update-payment-method-flow.component';
-import { FlowType } from '@app/_models/flow-type.enum';
+import { FlowType } from '@app/models';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: 'verify-id',
         loadChildren: () =>
-          import('@app/_pages/verify-id-page/verify-id-page.module').then(
+          import('@app/pages/verify-id-page').then(
             (m) => m.VerifyIdPageModule
           ),
       },
@@ -24,13 +24,13 @@ const routes: Routes = [
         path: 'enter-sms',
         loadChildren: () =>
           import(
-            '@app/_pages/enter-sms-code-page/enter-sms-code-page.module'
+            '@app/pages/enter-sms-code-page'
           ).then((m) => m.EnterSmsCodeModule),
       },
       {
         path: 'credit-card',
         loadChildren: () =>
-          import('@app/_pages/credit-card/credit-card.module').then(
+          import('@app/pages/credit-card').then(
             (m) => m.CreditCardModule
           ),
         data: { flowType: FlowType.paymentMethod },
@@ -38,7 +38,7 @@ const routes: Routes = [
       {
         path: 'success',
         loadComponent: () =>
-          import('../../_pages/success-page/success-page.component').then(
+          import('../../pages/success-page').then(
             (x) => x.SuccessPageComponent
           ),
         data: { flowType: FlowType.paymentMethod },

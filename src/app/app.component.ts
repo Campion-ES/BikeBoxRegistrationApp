@@ -1,13 +1,9 @@
 ﻿import { Component, inject, OnInit } from '@angular/core';
-import { GPage } from './_services';
-import { IUserModel } from './_models';
-import { GKeybLanGlobal as G } from '@app/_globals/keyb-lang.global';
-import { TLangNames } from './_interfaces/interfaces';
-import { epg } from '@app/_interfaces/interfaces';
-import { environment } from '@environments/environment';
+import { Keyboard } from '@app/utils/keyb-lang.global';
 import { UserIdleService } from 'angular-user-idle';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
+import { TLangNames } from './keyboard';
 
 @UntilDestroy()
 @Component({
@@ -18,20 +14,13 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly userIdle = inject(UserIdleService);
-  env = environment;
-  epg = epg;
-  // get user() {return GUser};
-  user: IUserModel | undefined;
-  get page() {
-    return GPage;
-  }
-  ref = G.ref;
+  ref = Keyboard.ref;
 
   public get IsKeyb(): boolean {
-    return G.KeyboardVisible;
+    return Keyboard.KeyboardVisible;
   }
   public set IsKeyb(v: boolean) {
-    G.KeyboardVisible = v;
+    Keyboard.KeyboardVisible = v;
   }
 
   ngOnInit() {
@@ -58,7 +47,7 @@ export class AppComponent implements OnInit {
     if (this.IsKeyb) this.IsKeyb = false;
   }
   setLang(lang: TLangNames) {
-    G.setLang(lang);
+    Keyboard.setLang(lang);
   }
 
   save(data: string, filename: string) {

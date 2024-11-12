@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreditCardComponent } from '@app/_pages/credit-card/credit-card.component';
-import { CreditCardModule } from '@app/_pages/credit-card/credit-card.module';
-import { RegisterPageComponent } from '@app/_pages/register-page/register-page.component';
-import { RegisterPageModule } from '@app/_pages/register-page/register-page.module';
 import { RegisterFlowComponent } from './register-flow.component';
-import { FlowType } from '@app/_models/flow-type.enum';
+import { FlowType } from '@app/models';
 
 const routes: Routes = [
   {
@@ -20,14 +16,14 @@ const routes: Routes = [
       {
         path: 'form',
         loadChildren: () =>
-          import('@app/_pages/register-page/register-page.module').then(
+          import('@app/pages/register-page').then(
             (m) => m.RegisterPageModule
           ),
       },
       {
         path: 'credit-card',
         loadChildren: () =>
-          import('@app/_pages/credit-card/credit-card.module').then(
+          import('@app/pages/credit-card').then(
             (m) => m.CreditCardModule
           ),
         data: { flowType: FlowType.register },
@@ -35,7 +31,7 @@ const routes: Routes = [
       {
         path: 'success',
         loadComponent: () =>
-          import('../../_pages/success-page/success-page.component').then(
+          import('../../pages/success-page').then(
             (x) => x.SuccessPageComponent
           ),
         data: { flowType: FlowType.register },
@@ -46,6 +42,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule, RegisterPageModule, CreditCardModule],
+  exports: [RouterModule],
 })
 export class RegisterFlowRoutingModule {}

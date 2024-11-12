@@ -11,8 +11,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GKeybLanGlobal as G } from '../../_globals/keyb-lang.global';
-const TO_LOG = true;
+import { Keyboard } from '../../utils/keyb-lang.global';
 
 @Directive({
   selector: '[form2keyb]',
@@ -23,7 +22,7 @@ export class Form2keybDirective implements OnInit, AfterViewInit, OnDestroy {
   @Output() onExitInput: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private hostElt: ElementRef, public renderer: Renderer2) {
-    this.subs.push(G.KeyboardEnter$.subscribe((intr) => this.OnKeyEnter(intr)));
+    this.subs.push(Keyboard.KeyboardEnter$.subscribe((intr) => this.OnKeyEnter(intr)));
   }
   ngOnDestroy(): void {
     this.subs.forEach((subs) => subs.unsubscribe());
@@ -49,7 +48,7 @@ export class Form2keybDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   OnKeyEnter(intr: string = '??'): void {
-    const cname: string = G.AttachedControlName;
+    const cname: string = Keyboard.AttachedControlName;
     if (cname.length > 0) {
       // debugger;
       this.onExitInput.emit(cname);
