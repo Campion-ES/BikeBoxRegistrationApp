@@ -29,6 +29,11 @@ export class ToKeybDirective implements OnInit, OnDestroy {
   @HostBinding() id!: string;
   public f!: FormControl;
 
+  @HostListener('focusin', ['$event'])
+  onFocusin() {
+    Keyboard.KeyboardVisible = true;
+  }
+
   constructor(
     private hostElt: ElementRef,
     public renderer: Renderer2,
